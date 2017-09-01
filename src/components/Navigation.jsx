@@ -15,9 +15,12 @@ class Navigation extends Component {
 		return (
 			<nav className="Nav">
 				<Link to="/" className="Link-Home">
+					<div className="logo">
+						<img src="/src/assets/images/restauranticon.png" />
 					Byte Me
+					</div>
 				</Link>
-				{links.map((link)=> {
+				{links.map((link) => {
 					return (
 						<NavLink
 							key={link.to}
@@ -29,7 +32,7 @@ class Navigation extends Component {
 							{link.text}
 						</NavLink>
 					);
-				})})}
+				})}
 			</nav>
 		);
 	}

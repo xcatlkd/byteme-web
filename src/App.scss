@@ -1,5 +1,6 @@
 // CSS Reset
 @import "~reset-css/reset.css";
+@import url('https://fonts.googleapis.com/css?family=Oregano');
 
 // Box sizing
 *, *:before, *:after {
@@ -7,4 +8,8 @@
 }
 body {
 	box-sizing: border-box;
+}
+
+h1 {
+	
 }
