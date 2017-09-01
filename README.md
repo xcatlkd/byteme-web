@@ -41,7 +41,7 @@ TBA Heroku deployment with address
 * [Foodspotting](http://www.foodspotting.com) - Finding food via geolocation
 
 # Acknowledgements
-Webpack template was created by [Will O'Beirne](https://github.com/wbobeirne/)
+Webpack template created by [Will O'Beirne](https://github.com/wbobeirne/)
 
 ## License
 
