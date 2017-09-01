@@ -7,8 +7,10 @@ const Jimp = require('jimp');
 const Files = require('./file');
 // import table dependencies
 
-const Likes = require('./like');
-const Comments = require('./comment');
+import Post from "./post";
+import Address from "./address";
+import Like from "./like";
+
 const fs = require("fs-extra");
 
 
