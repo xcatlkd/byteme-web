@@ -6,7 +6,13 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="Intro-text">
-				Byte Me!
+
+				<h1>Byte Me!</h1>
+
+				<div className="Home-body">
+				Welcome to Byte Me! If you own a food establishment and want to
+				put your business out there, sign up for an account!
+				</div>
 			</div>
 		);
 	}
