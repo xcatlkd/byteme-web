@@ -9,7 +9,7 @@ class Home extends Component {
 
 				<h1>Byte Me!</h1>
 
-				<div className="home-body">
+				<div className="Home-body">
 				Welcome to Byte Me! If you own a food establishment and want to
 				put your business out there, sign up for an account!
 				</div>
