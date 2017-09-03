@@ -22,5 +22,4 @@ else {
 	});
 }
 
-const sequelize = sql;
-export default sequelize;
+export default sql;
