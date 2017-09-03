@@ -1,4 +1,4 @@
-import "./Home.scss";
+import "./Login.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -16,12 +16,12 @@ class Login extends Component {
 
 Login.propTypes = {
 
-}
+};
 
 function mapStateToProps(state, props) {
 	return {
 
-	}	
+	};
 
 }
 
