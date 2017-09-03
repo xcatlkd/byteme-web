@@ -11,7 +11,7 @@ class Home extends Component {
 
 				<h1>Byte Me!</h1>
 
-				<div className="Home-body">
+				<div className="home-body">
 				Welcome to Byte Me! If you own a food establishment and want to
 				put your business out there, sign up for an account!
 				</div>
@@ -22,12 +22,12 @@ class Home extends Component {
 
 Home.propTypes = {
 
-}
+};
 
 function mapStateToProps(state, props) {
 	return {
 
-	}	
+	};
 
 }
 
