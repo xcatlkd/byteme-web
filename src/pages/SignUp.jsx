@@ -15,6 +15,13 @@ class Signup extends Component {
 			};
 		}
 	}
+	_handleSubmit() {
+
+	}
+	_handleChange() {
+		
+	}
+
 	render() {
 		return (
 			<div className="rest-form">
