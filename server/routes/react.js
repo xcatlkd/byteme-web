@@ -23,7 +23,25 @@ export default function(app) {
 		app.use(webpackHotMiddleware(compiler));
 		const mfs = devMW.fileSystem;
 
-		
+		console.log("Webpack is building. Please stand by.");
+		htmlHandler = (req, res) => {
+			devMW.waitUntilValid(() => {
+				const html = devMW.fileSystem.readFileSync(htmlFilePath);
+				res.end(html);
+			});
+		}
+	}
+	else {
+		htmlHandler = (req, res) => {
+			try {
+				const html = fs.readFileSync(htmlFilePath);
+				res.end(html);
+			}
+			catch (error) {
+				console.error(error)
+
+			}
+		}
 	}
 
 }
