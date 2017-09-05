@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 	userPosts: [],
 
 
-}
+};
 
 function restaurantReducer(state = INITIAL_STATE, action) {
 	switch(action.type) {
@@ -12,17 +12,17 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 			return {
 				...state,
 				isLoggedIn: true,
-			}
+			};
 		case "LOGOUT":
 			return {
 				...state,
 				isLoggedIn: false,
-			}
+			};
 		case "SET_USER_POSTS":
 			return {
 				...state,
 				userPosts: action.data,
-			}
+			};
 		default:
 			return state;
 	}
