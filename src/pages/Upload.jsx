@@ -7,8 +7,12 @@ import PropTypes from "prop-types";
 class Upload extends Component {
 	render() {
 		return (
-			<div className="Upload">
-				Insert Upload Function
+			<div className="upload-container">
+				<h1>Upload Your Photos Here</h1>
+				<form onSubmit={this._handleSubmit} method="post">
+					<label className="file" name="file" onChange={this._handleChange} required />
+					<button className="Submit">Submit</button>
+				</form>
 			</div>
 		);
 	}
