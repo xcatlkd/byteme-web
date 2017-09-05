@@ -1,12 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "App";
-
-// Render the app
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
-
-window.api = {
-	BASE_PATH: "/api",
+export default {
+	BASE_PATH: "http://localhost:4000/api",
 
 	/**
 	 * Fires a request at the API
@@ -45,9 +38,11 @@ window.api = {
 			headers,
 			body,
 			credentials: "include",
-		}).then((res) => {
+		})
+		.then((res) => {
 			return res.json();
-		}).catch((err) => {
+		})
+		.catch((err) => {
 			console.error("Uncaught error:", err);
 		});
 	},
