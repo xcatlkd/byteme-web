@@ -8,6 +8,15 @@ const INITIAL_STATE = {
 
 function restaurantReducer(state = INITIAL_STATE, action) {
 	switch(action.type) {
+		case "SIGNUP_PENDING":
+			return {
+				...state,
+			}
+		case "SIGNUP_SUCCESS":
+			return {
+				...state,
+				isLoggedIn: true,
+			}
 		case "LOGIN_SUCCESS":
 			return {
 				...state,
