@@ -4,7 +4,7 @@
 		"restaurantId": "3",
 		"name": "steak",
 		"description": "A delicious steak",
-		"price": "$One million",
+		"price": "$1 million",
 		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
 	}, {
 		"id": "2",
@@ -39,7 +39,7 @@
 		"restaurantId": "3",
 		"name": "onion",
 		"description": "A delicious onion",
-		"price": "$One",
+		"price": "$1",
 		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
 	}
 
