@@ -1,10 +1,10 @@
-const sql = require('../util/sql');
+import sql from '../util/sql';
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 
 const path = require('path');
-const Jimp = require('jimp');
-const Files = require('./file');
+import imgurUpload from "../util/imgurUpload";
+
 // import table dependencies
 
 import Post from "./post";
@@ -15,7 +15,7 @@ const fs = require("fs-extra");
 
 
 
-const Restaurant = sql.define('user', {
+const Restaurant = sql.define('restaurant', {
 	id: {
 		type: Sequelize.INTEGER,
 		primaryKey: true,
@@ -46,8 +46,9 @@ const Restaurant = sql.define('user', {
 });
 
 // relationships
-Restaurant.hasMany(Post);
-Restaurant.hasOne(Address, { through: userAddress });
+//Restaurant.hasMany(Post);
+/* Restaurant.hasOne(Address, { through: userAddress });
+Restaurant.hasMany(Phone, { through: userPhone }); */
 
 // model extensions
 Restaurant.prototype.upload = function(file, body) {
@@ -86,7 +87,7 @@ Restaurant.prototype.upload = function(file, body) {
 
 //additional user functionality
 
-function hashUserPassword(user) {
+function hashUserPassword(restaurant) {
 	if (restaurant.password) {
 		return bcrypt.genSalt()
 			.then(function(salt) {
@@ -106,8 +107,8 @@ Restaurant.search = function(username) {
 	return Restaurant.findOne({ where: {
 		username: username,
 	}})
-	.then(function(user) {
-		if (user) {
+	.then(function(restaurant) {
+		if (restaurant) {
 			return true;
 		} else {
 			return false;
@@ -119,10 +120,11 @@ Restaurant.signup = function(req) {
 	return Restaurant.create({
 			username: req.body.username,
 			password: req.body.password,
+			restaurantName: req.body.restaurantName,
 			isActive: true,
 		})
-		.then(function(user) {
-			return user;
+		.then(function(restaurant) {
+			return restaurant;
 		});
 };
 
