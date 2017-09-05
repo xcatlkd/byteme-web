@@ -38,7 +38,8 @@ rules.push({
 	use: [{
 		loader: "file-loader",
 		options: {
-			name: "[path][name].[ext]?[hash:8]",
+			name: "[name].[ext]?[hash:8]",
+			useRelativePath: true,
 		},
 	}, {
 		loader: "image-webpack-loader",
@@ -51,7 +52,8 @@ rules.push({
 	use: {
 		loader: "file-loader",
 		options: {
-			name: "[path][name].[ext]?[hash:8]",
+			name: "[name].[ext]?[hash:8]",
+			useRelativePath: true,
 		},
 	},
 });
@@ -107,11 +109,15 @@ else {
 
 // *** Final Config *** //
 module.exports = {
-	entry: "./src/index.js",
+	entry: IS_DEV ? {
+		main: [
+			"./src/index.js",
+			"webpack-hot-middleware/client",
+		],
+	} : "./src/index.js",
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "app.[hash:8].js",
-		publicPath: "/",
 	},
 	resolve: {
 		modules: ["node_modules", path.resolve(__dirname, "src")],
