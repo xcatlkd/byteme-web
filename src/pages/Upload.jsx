@@ -11,6 +11,7 @@ class Upload extends Component {
 				<h1>Upload Your Photos Here</h1>
 				<form onSubmit={this._handleSubmit} method="post">
 					<label className="file" name="file" onChange={this._handleChange} required />
+					<button className="Submit">Submit</button>
 				</form>
 			</div>
 		);
@@ -30,3 +31,4 @@ function mapStateToProps(state, props) {
 
 
 export default connect(mapStateToProps, {  })(Upload);
+
