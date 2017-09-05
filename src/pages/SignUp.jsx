@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Button, Form,  } from "semantic-ui-react";
+import { signup } from "actions/restaurant";
 
 class Signup extends Component {
 	constructor(props) {
@@ -15,6 +16,16 @@ class Signup extends Component {
 			};
 		}
 	}
+	_handleChange() {
+		this.setState({
+			[event.target.name]: [event.target.value].toString(),
+		})	
+	}
+	_handleSubmit() {
+		event.preventDefault();
+		this.props.signup(this.state);
+	}
+
 	render() {
 		return (
 			<div className="rest-form">
@@ -55,4 +66,4 @@ function mapStateToProps(state, props) {
 
 
 
-export default connect(mapStateToProps, {  })(Signup);
+export default connect(mapStateToProps, { signup })(Signup);
