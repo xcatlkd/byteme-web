@@ -9,6 +9,8 @@ class Error extends Component {
 		return (
 			<div className="Error">
 
+				<img src="./src/images/404error.png" />
+
 				<h1>You got an error! Trace your steps back!</h1>
 
 			</div>
