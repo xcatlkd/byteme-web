@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Button, Form, Segment, Grid } from "semantic-ui-react";
 import { signup } from "actions/restaurant";
 
 class Signup extends Component {

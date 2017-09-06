@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Segment, Form, Button } from "semantic-ui-react";
 
 class Login extends Component {
 	constructor(props) {
@@ -16,22 +17,27 @@ class Login extends Component {
 	render() {
 		return (
 			<div className="rest-form">
-				<div className="rest-signup-form">
+				<div className="rest-login-form">
 					<h1>Login</h1>
-					<form onSubmit={this._handleSubmit}>
-						<div className="rest-user-name">
+					<Segment inverted>
+						<Form inverted>
+							<Form>
+								<Form.Field required>
 							<label className="name">User Name:</label>
-							<input type="text" name="Name" onChange={this._handleChange} required/>
-						</div>
-						<div className="rest-password">
+							<input type="text" name="Name" onChange={this._handleChange}/>
+
 							<label className="password">Password:</label>
-							<input type="password" name="Password" onChange={this._handleChange} required/>
+							<input type="password" name="Password" onChange={this._handleChange}/>
+						<div className="login-button">
+						<Button type="login" onSubmit={this._handleSubmit}>
+								LOGIN</Button>
 						</div>
-						<button type="login" onSubmit={this._handleSubmit}>
-								LOGIN</button>
-					</form>
+					</Form.Field>
+				</Form>
+			</Form>
+		</Segment>
+					</div>
 				</div>
-			</div>
 		);
 	}
 }
