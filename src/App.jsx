@@ -34,9 +34,9 @@ class App extends React.Component {
               <Route exact path="/Upload" component={Upload}/>
               <Route exact path="/*" component={PageError}/>
             </Switch>
-          </div>
-        </BrowserRouter>
-      </Provider>
+            </div>
+          </BrowserRouter>
+        </Provider>
       );
     }
 }
