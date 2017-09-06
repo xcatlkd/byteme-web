@@ -15,7 +15,7 @@ const SessionStore = connectSessionSerialize(session.Store);
 
 dotenv.config();
 const app = express();
-const port = process.env.SERVER_PORT || 8080;
+const port = process.env.PORT || 8080;
 const cookieSecret = process.env.COOKIE_SECRET || "don";
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,10 +31,15 @@ app.use(session({
 // routing #################################
 
 import apiRoutes from "./routes/api";
+import reactRoute from "./routes/react";
 //import adminRoutes from "./routes/admin";
 
 app.use("/api", apiRoutes);
 //app.use("/admin", adminRoutes);
+
+if (!process.env.SERVER_ONLY) {
+	reactRoute(app);
+}
 
 // Sync db and launch server ################################
 
