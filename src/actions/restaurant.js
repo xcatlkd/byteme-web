@@ -1,7 +1,5 @@
 import API from "util/api";
 
-
-
 export function signup(restaurant) {
 	return (dispatch) => {
 		dispatch({
@@ -16,7 +14,7 @@ export function signup(restaurant) {
 			},
 		}).then((res) => {
 			if (res.data) {
-				console.log(res.data);
+				console.log("actions/restaurant; res.data: ", res.data);
 				dispatch({
 					type: "SIGNUP_SUCCESS",
 				})
