@@ -1,7 +1,6 @@
 // CSS Reset
-@import "~reset-css/reset.css";
 @import "~semantic-ui-css/semantic.min.css";
-@import url('https://fonts.googleapis.com/css?family=Oregano');
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 
 // Box sizing
 *, *:before, *:after {
@@ -9,8 +8,4 @@
 }
 body {
 	box-sizing: border-box;
-}
-
-h1 {
-
 }
