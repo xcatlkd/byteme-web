@@ -5,6 +5,7 @@ import fs from "fs";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import webpackConfig from "../../webpack.config";
+const IS_DEV = process.env.NODE_ENV === "development";
 
 export default function(app) {
 	const htmlFilePath = path.resolve(__dirname, "../../dist", "index.html");
@@ -39,9 +40,11 @@ export default function(app) {
 			}
 			catch (error) {
 				console.error(error)
-
+				res.end("Site building");
 			}
-		}
+		};
+		app.use(express.static(path.resolve(htmlFilePath, "..")));
 	}
+	app.get("*", htmlHandler);
 
 }
