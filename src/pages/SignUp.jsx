@@ -19,7 +19,7 @@ class Signup extends Component {
 	_handleChange() {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
-		})	
+		});	
 	}
 	_handleSubmit() {
 		event.preventDefault();
