@@ -11,7 +11,11 @@ router.use(BodyParser.json());
 // define routes here ###################################
 
 router.post("/signup", (req, res) => {
-	Restaurant.signup(req);
+	Restaurant.signup(req)
+	.then((restaurant) => {
+		console.log("success", res);
+		res.send("Success");
+	});
 });
 
 
