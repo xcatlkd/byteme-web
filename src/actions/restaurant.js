@@ -7,6 +7,7 @@ export function signup(restaurant) {
 		dispatch({
 			type: "SIGNUP_PENDING",
 		})
+		console.log("action/restaurant; signup, before API call:");
 		API.post("/signup", {
 			args: {
 				username: restaurant.username,

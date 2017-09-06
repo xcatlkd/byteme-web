@@ -10,18 +10,18 @@ class Signup extends Component {
 	constructor(props) {
 		super(props); {
 			this.state = {
-				name: "",
-				restaurant: "",
+				username: "",
+				restaurantName: "",
 				password: "",
 			};
 		}
 	}
-	_handleChange() {
+	_handleChange = (event) => {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
 		})	
 	}
-	_handleSubmit() {
+	_handleSubmit = () => {
 		event.preventDefault();
 		this.props.signup(this.state);
 	}
@@ -34,15 +34,15 @@ class Signup extends Component {
 					<form onSubmit={this._handleSubmit}>
 						<div className="rest-user-name">
 							<label className="name">User Name:</label>
-							<input type="text" name="Name" onChange={this._handleChange} required/>
+							<input type="text" name="username" onChange={this._handleChange} required/>
 						</div>
 						<div className="rest-name">
 							<label className="name">Restaurant Name:</label>
-							<input type="text" name="Restaurant" onChange={this._handleChange} required/>
+							<input type="text" name="restaurantName" onChange={this._handleChange} required/>
 						</div>
 						<div className="rest-password">
 							<label className="password">Password:</label>
-							<input type="password" name="Password" onChange={this._handleChange} required/>
+							<input type="password" name="password" onChange={this._handleChange} required/>
 						</div>
 						<button type="submit" onSubmit={this._handleSubmit}>
 						SUBMIT</button>
