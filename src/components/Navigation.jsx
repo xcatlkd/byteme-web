@@ -21,7 +21,7 @@ class Navigation extends Component {
 						{/* <Menu.Item position = "left"> */}
 							<Link to="/" className="Link-Home">
 								<div className="logo">
-									<img src="/src/assets/images/restauranticon.png" />
+									<img src="/src/assets/images/restauranticon.png"/>
 										Byte Me
 								</div>
 							</Link>
