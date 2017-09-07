@@ -36,7 +36,8 @@ class Navigation extends Component {
 			}];
 		}
 
-		return (
+
+  	return (
 			<div className="Nav">
 				<Menu>
 					<Menu.Menu position = "left">

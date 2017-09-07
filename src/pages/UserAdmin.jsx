@@ -6,6 +6,11 @@ import TEST from "json/test.json";
 import PropTypes from "prop-types";
 
 class UserAdmin extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+
 	render() {
 		return (
 			<div className="UserAdmin">
