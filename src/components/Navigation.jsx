@@ -6,13 +6,24 @@ import { Button, Menu } from "semantic-ui-react";
 class Navigation extends Component {
 
 	render() {
-		const links = [{
+		const signUpLinks = [{
 			to: "/signup",
 			text: "Sign Up",
 		}, {
 			to: "/login",
 			text: "Login",
 		}];
+
+// ### NEED TO IMPLEMENT DIFFERENT NAV BAR FOR USER #######
+// ### AND CREATE SIGN OFF FUNCTION ######
+
+		// const userLinks = [{
+		// 	to: "/upload",
+		// 	text: "Upload",
+		// }, {
+		// 	to: "/signoff",
+		// 	text: "Sign Off"
+		// }];
 
 		return (
 			<div className="Nav">
