@@ -22,7 +22,7 @@ router.post("/login", (req, res) => {
 	Restaurant.login(req)
 	.then((restaurant) => {
 		return restaurant;
-	}
+	});
 });
 
 router.get("/posts", (req, res) => {

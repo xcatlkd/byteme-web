@@ -4,8 +4,15 @@ import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Form } from "semantic-ui-react";
+import { postUpload } from "actions/restaurant";
 
 class Upload extends Component {
+
+	_handleSubmit = (photo, event) => {
+		event.preventDefault();
+		this.props.postUpload(photo);
+	}
+
 	render() {
 		return (
 			<div className="upload-container">
@@ -31,4 +38,4 @@ function mapStateToProps(state, props) {
 }
 
 
-export default connect(mapStateToProps, {  })(Upload);
+export default connect(mapStateToProps, { postUpload })(Upload);
