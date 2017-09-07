@@ -26,6 +26,7 @@ app.use(session({
 	secret: cookieSecret,
 	resave: false
 }));
+app.use(express.static('assets'));
 // app.use(deserializeUser);
 
 // routing #################################
