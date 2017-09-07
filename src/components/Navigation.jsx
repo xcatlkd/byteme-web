@@ -21,6 +21,9 @@ class Navigation extends Component {
 			}, {
 				to: "/upload",
 				text: "Upload items"
+			}, {
+				to: "/signout",
+				text: "Sign out"
 			}]
 		}
 		else {
