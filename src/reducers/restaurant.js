@@ -37,3 +37,5 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 	}
 
 }
+
+export default restaurantReducer;
