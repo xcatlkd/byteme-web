@@ -10,18 +10,18 @@ class Signup extends Component {
 	constructor(props) {
 		super(props); {
 			this.state = {
-				name: "",
-				restaurant: "",
+				username: "",
+				restaurantName: "",
 				password: "",
 			};
 		}
 	}
-	_handleChange() {
+	_handleChange = (event) => {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
 		});
 	}
-	_handleSubmit() {
+	_handleSubmit = () => {
 		event.preventDefault();
 		this.props.signup(this.state);
 	}

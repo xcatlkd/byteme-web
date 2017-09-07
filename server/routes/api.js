@@ -13,11 +13,15 @@ router.use(BodyParser.json());
 router.post("/signup", (req, res) => {
 	Restaurant.signup(req)
 	.then((restaurant) => {
-		console.log("success", res);
+		console.log("success", res.signedCookies, res.body);
 		res.send("Success");
 	});
 });
 
+router.post("/login", (req, res) => {
+	Restaurant.login(req)
+	.then(restaurant)
+});
 
 router.get("/posts", (req, res) => {
 	/* Post.findAll({

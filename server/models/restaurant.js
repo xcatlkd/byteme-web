@@ -13,8 +13,6 @@ import Like from "./like";
 
 const fs = require("fs-extra");
 
-
-
 const Restaurant = sql.define('restaurant', {
 	id: {
 		type: Sequelize.INTEGER,
