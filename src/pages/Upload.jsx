@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Form } from "semantic-ui-react";
+import { Form, Grid, Segment, Button, Input } from "semantic-ui-react";
 import { postUpload } from "actions/restaurant";
 
 class Upload extends Component {
@@ -22,7 +22,6 @@ class Upload extends Component {
 			[event.target.name]: [event.target.value].toString(),
 		})
 	}
-
 	_handleSubmit = (event) => {
 		event.preventDefault();
 		this.props.postUpload(this.state.file, this.state);
@@ -33,10 +32,17 @@ class Upload extends Component {
 			<div className="upload-container">
 				<h1>Upload Your Photos Here</h1>
 				<div className="upload-post">
-					<form className="upload-form" onSubmit={this._handleSubmit} method="post">
-					<input type="file" onChange={this._handleChange}/>
-					<button className="submit" onClick={this._handleSubmit}>Upload Image</button>
-				</form>
+					<Segment inverted>
+					<Form.Field required>
+					<Form className="upload-form" onSubmit={this._handleSubmit} method="post">
+					<input type="file" onChange={this._handleSubmit}/>
+					<input type="text" placeholder="Name of Food" onChange={this._handleChange} name="FoodName"/>
+					<input type="text" placeholder="Description" onChange={this._handleChange} name="Description"/>
+					<input type="text" placeholder="Price" onChange={this._handleChange} name="Price"/>
+					<Button className="upload-submit" onClick={this._handleSubmit}>Upload Image</Button>
+					</Form>
+					</Form.Field>
+			</Segment>
 				</div>
 			</div>
 		);
