@@ -2,10 +2,15 @@ import "./UserAdmin.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import TEST from "./json/test";
+import Test from "json/test.json";
 import PropTypes from "prop-types";
 
 class UserAdmin extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+
 	render() {
 		return (
 			<div className="UserAdmin">
