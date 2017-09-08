@@ -25,7 +25,6 @@ class Login extends Component {
 								<Form.Field required>
 							<label className="name">User Name:</label>
 							<input type="text" name="Name" onChange={this._handleChange}/>
-
 							<label className="password">Password:</label>
 							<input type="password" name="Password" onChange={this._handleChange}/>
 						<div className="login-button">
