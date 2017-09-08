@@ -14,7 +14,7 @@ router.post("/signup", (req, res) => {
 	Restaurant.signup(req)
 	.then((restaurant) => {
 		console.log("success", restaurant.dataValues);
-		return restaurant.dataValues;
+		res.json(restaurant.dataValues);
 	});
 });
 
