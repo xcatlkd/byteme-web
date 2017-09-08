@@ -13,8 +13,6 @@ import Like from "./like";
 
 const fs = require("fs-extra");
 
-
-
 const Restaurant = sql.define('restaurant', {
 	id: {
 		type: Sequelize.INTEGER,
@@ -51,38 +49,32 @@ const Restaurant = sql.define('restaurant', {
 Restaurant.hasMany(Phone, { through: userPhone }); */
 
 // model extensions
-Restaurant.prototype.upload = function(file, body) {
-	let image;
-	return this.createFile({
-			id: file.filename,
-			size: file.size,
-			originalName: file.originalname,
-			mimeType: file.mimetype,
-			description: body.description,
-		  
-		})
-		.then(function(data) {
-			image = data;
-			const ext = path.extname(file.originalname);
-			const dest = "assets/photos/" + file.filename + ext;
-			return	fs.copy(file.path, dest)
-		})
-		.then(function() {
-			// If I'm an image
-			if (file.mimetype.includes("image/")) {
-				return Jimp.read(file.path)
-			.then(function(img) {
-					img.quality(80);
-					img.resize(Jimp.AUTO, 300);
-					// img.create(file.filename);
-					return	img.write("assets/files/" + file.filename + ".jpg")
-			});
-			}
-			})
-		.then(function() {
-					return image;
-		});
-};
+function handleUpload(product) {
+	if (!product.originalImages) {
+		return;
+	}
+
+	const allOldImages = product.images || [];
+
+	const promises = [];
+
+	product.originalImages.forEach((image, idx) => {
+		const oldImages = allOldImages[idx] || {};
+		if (image && image !== oldImages.original) {
+			promises.push(uploadToImgur(image).then((images) => {
+				product.images = [...product.images];
+				product.images[idx] = images;
+			}));
+		}
+	});
+
+	return Promise.all(promises).then(() => {
+		return product;
+	}).catch((err) => {
+		console.warn("Encountered error while uploading product image. Saving without images.");
+		console.warn(err.message);
+	});
+}
 
 
 //additional user functionality
