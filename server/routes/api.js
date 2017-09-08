@@ -19,7 +19,7 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-	Restaurant.login(req)
+	Restaurant.comparePassword(req.body.password)
 	.then((restaurant) => {
 		return restaurant;
 	});
@@ -37,7 +37,7 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", (req, res) => {
-
+	res.send(req);
 })
 
 export default router;

@@ -25,7 +25,7 @@ class Upload extends Component {
 
 	_handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.postUpload(this.state);
+		this.props.postUpload(this.state.file, this.state);
 	}
 
 	render() {
@@ -49,7 +49,7 @@ Upload.propTypes = {
 
 function mapStateToProps(state, props) {
 	return {
-
+		isLoggedIn: state.restaurant.isLoggedIn,
 	};
 
 }
