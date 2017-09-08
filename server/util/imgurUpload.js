@@ -1,4 +1,3 @@
-/* eslint-disable curly */
 import fetch from "node-fetch";
 import FormData from "form-data";
 import jimp from "jimp";
