@@ -10,18 +10,19 @@ class Signup extends Component {
 	constructor(props) {
 		super(props); {
 			this.state = {
-				name: "",
-				restaurant: "",
+				username: "",
+				restaurantName: "",
 				password: "",
 			};
 		}
 	}
-	_handleChange() {
+	_handleChange = (event) => {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
 		});
 	}
-	_handleSubmit() {
+	_handleSubmit = () => {
+		console.log(this.state);
 		event.preventDefault();
 		this.props.signup(this.state);
 	}
@@ -32,27 +33,27 @@ class Signup extends Component {
 				<div className="rest-signup-form">
 					<h1>Sign Up For An Account</h1>
 					<Segment inverted>
-						<Form inverted>
-							<Form>
+						<Form inverted onSubmit={this._handleSubmit}>
+							{/* <Form> */}
 								<Form.Field required>
 									{/* <Form.Field inline> */}
 										<p>
-										<label className="name">User Name:</label>
-										<input type="text" placeholder="Username" onChange={this._handleChange}/>
+										<label className="name" name="username">User Name:</label>
+										<input type="text" placeholder="Username" onChange={this._handleChange} name="username"/>
 										</p>
 										<p>
-										<label className="name">Restaurant Name:</label>
-										<input type="text" placeholder="Restaurant Name" onChange={this._handleChange}/>
+										<label className="name" name="restaurantName">Restaurant Name:</label>
+										<input type="text" placeholder="Restaurant Name" onChange={this._handleChange} name="restaurantName"/>
 										</p>
-										<label className="password">Password:</label>
-										<input type="password" placeholder="Password" onChange={this._handleChange}/>
+										<label className="password" name="password">Password:</label>
+										<input type="password" placeholder="Password" onChange={this._handleChange} name="password"/>
 									<div className="submit-button">
 										<Button type="submit" onSubmit={this._handleSubmit}>
 											SUBMIT</Button>
 										</div>
 									</Form.Field>
 								{/* </Form.Field> */}
-							</Form>
+							{/* </Form> */}
 						</Form>
 					</Segment>
 				</div>
