@@ -9,17 +9,17 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
-	super(props);
-	this.state = {
-		file: "",
-	};
-}
+		super(props);
+		this.state = {
+			file: "",
+		};
+	}
 
 	_handleSubmit = (photo, event) => {
 		event.preventDefault();
 		this.props.postUpload(photo);
 	}
-}
+
 	render() {
 		return (
 			<div className="upload-container">
