@@ -9,15 +9,23 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
-	super(props);
-	this.state = {
-		file: "",
-	};
-}
+		super(props);
+		this.state = {
+			file: null,
+			title: "",
+			description: "",
+			price: null,
+		};
+	}
+	_handleChange = (event) => {
+		this.setState({
+			[event.target.name]: [event.target.value].toString(),
+		})
+	}
 
-	_handleSubmit = (photo, event) => {
+	_handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.postUpload(photo);
+		this.props.postUpload(this.state);
 	}
 
 	render() {
@@ -26,7 +34,7 @@ class Upload extends Component {
 				<h1>Upload Your Photos Here</h1>
 				<div className="upload-post">
 					<form className="upload-form" onSubmit={this._handleSubmit} method="post">
-					<input type="file" onChange={this._handleSubmit}/>
+					<input type="file" onChange={this._handleChange}/>
 					<button className="submit" onClick={this._handleSubmit}>Upload Image</button>
 				</form>
 				</div>

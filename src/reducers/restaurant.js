@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
 
 	isLoggedIn: false,
-	userPosts: [],
+	posts: [],
 
 
 };
