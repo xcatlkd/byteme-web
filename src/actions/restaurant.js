@@ -1,12 +1,11 @@
 import API from "util/api";
 
-
-
 export function signup(restaurant) {
 	return (dispatch) => {
 		dispatch({
 			type: "SIGNUP_PENDING",
 		})
+		console.log("action/restaurant; signup, before API call:");
 		API.post("/signup", {
 			args: {
 				username: restaurant.username,
@@ -14,8 +13,8 @@ export function signup(restaurant) {
 				restaurantName: restaurant.restaurantName,
 			},
 		}).then((res) => {
-			if (res.data) {
-				console.log(res.data);
+			if (res) {
+				console.log("actions/restaurant; res: ", res);
 				dispatch({
 					type: "SIGNUP_SUCCESS",
 				})
@@ -31,6 +30,7 @@ export function signup(restaurant) {
 
 export function login() {
 	return (dispatch) => {
+		
 
 	}
 }

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Segment, Form, Button } from "semantic-ui-react";
 
 class Login extends Component {
 	constructor(props) {
@@ -13,25 +14,39 @@ class Login extends Component {
 			};
 		}
 	}
+	_handleChange = (event) => {
+		this.setState({
+			[event.target.name]: [event.target.value].toString(),
+		});
+	}
+
+	_handleSubmit = () => {
+		console.log(this.state);
+	}
 	render() {
 		return (
 			<div className="rest-form">
-				<div className="rest-signup-form">
+				<div className="rest-login-form">
 					<h1>Login</h1>
-					<form onSubmit={this._handleSubmit}>
-						<div className="rest-user-name">
-							<label className="name">User Name:</label>
-							<input type="text" name="Name" onChange={this._handleChange} required/>
+					<Segment inverted>
+						<Form inverted onSubmit={this._handleSubmit}>
+							{/* <Form> */}
+								<Form.Field required>
+							<label className="name" name="username">User Name:</label>
+							<input type="text" onChange={this._handleChange} name="username"/>
+
+							<label className="password" name="password">Password:</label>
+							<input type="password" onChange={this._handleChange} name="password"/>
+						<div className="login-button">
+						<Button type="login" onSubmit={this._handleSubmit}>
+								LOGIN</Button>
 						</div>
-						<div className="rest-password">
-							<label className="password">Password:</label>
-							<input type="password" name="Password" onChange={this._handleChange} required/>
-						</div>
-						<button type="login" onSubmit={this._handleSubmit}>
-								LOGIN</button>
-					</form>
+					</Form.Field>
+				{/* </Form> */}
+			</Form>
+		</Segment>
+					</div>
 				</div>
-			</div>
 		);
 	}
 }

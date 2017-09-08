@@ -3,16 +3,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Form } from "semantic-ui-react";
+import { postUpload } from "actions/restaurant";
 
 class Upload extends Component {
+
+	constructor(props) {
+	super(props);
+	this.state = {
+		file: "",
+	};
+
+	_handleSubmit = (photo, event) => {
+		event.preventDefault();
+		this.props.postUpload(photo);
+	}
+
 	render() {
 		return (
 			<div className="upload-container">
 				<h1>Upload Your Photos Here</h1>
-				<form onSubmit={this._handleSubmit} method="post">
-					<label className="file" name="file" onChange={this._handleChange} required />
-					<button className="Submit">Submit</button>
+				<div className="upload-post">
+					<form className="upload-form" onSubmit={this._handleSubmit} method="post">
+					<input type="file" onChange={this._handleSubmit}/>
+					<button className="submit" onClick={this._handleSubmit}>Upload Image</button>
 				</form>
+				</div>
 			</div>
 		);
 	}
@@ -30,5 +46,4 @@ function mapStateToProps(state, props) {
 }
 
 
-export default connect(mapStateToProps, {  })(Upload);
-
+export default connect(mapStateToProps, { postUpload })(Upload);

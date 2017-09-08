@@ -1,5 +1,20 @@
-.Intro-text {
+body {
+	background-image: ('/src/assets/images/landing.jpg');
+	background-repeat: no-repeat;
+}
 
+.landing-header {
+	font-weight: bold;
+	font-size: 48px;
+}
+
+/**** Insert a color background, for intro text but need to figure out
+why image is not rendering ***/
+
+.Intro-text {
+	margin: 0 auto;
+	font-size: 20px;
+	padding-top: 20px;
 }
 
 .Home-body {
