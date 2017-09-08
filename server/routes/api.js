@@ -19,7 +19,7 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-	Restaurant.login(req)
+	Restaurant.comparePassword(req.body.password)
 	.then((restaurant) => {
 		return restaurant;
 	});
@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
 
 router.get("/posts", (req, res) => {
 	/* Post.findAll({
-		where: id === req.session.restaurantId,
+		where: restaurantId === req.session.restaurantId,
 	})
 	.then(() => {
 		res.send("H1@");
@@ -35,5 +35,9 @@ router.get("/posts", (req, res) => {
 
 	res.send("{'TEST': 1}");
 });
+
+router.post("/upload", (req, res) => {
+	res.send(req);
+})
 
 export default router;

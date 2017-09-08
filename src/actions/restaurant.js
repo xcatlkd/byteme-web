@@ -16,7 +16,7 @@ export function signup(restaurant) {
 			if (res) {
 				console.log("actions/restaurant; res: ", res);
 				dispatch({
-					type: "SIGNUP_SUCCESS",
+					type: "AUTH_SUCCESS",
 				})
 			}
 			else {
@@ -30,8 +30,28 @@ export function signup(restaurant) {
 
 export function login() {
 	return (dispatch) => {
-		
-
+		dispatch({
+			type: "AUTH_PENDING",
+		})
+		console.log("action/restaurant; signup, before API call:");
+		API.post("/signup", {
+			args: {
+				username: restaurant.username,
+				password: restaurant.password,
+			},
+		}).then((res) => {
+			if (res) {
+				console.log("actions/restaurant; res: ", res);
+				dispatch({
+					type: "AUTH_SUCCESS",
+				})
+			}
+			else {
+				console.log(res.error);
+			}
+		}).catch((error) => {
+			console.error("Something went wrong: ", error);
+		});
 	}
 }
 
@@ -41,8 +61,16 @@ export function logout() {
 	}
 }
 
-export function postUpload() {
+export function postUpload(post) {
 	return (dispatch) => {
+		dispatch({
+			type: "UPLOAD_PENDING",
+		})
+		API.post("/upload", {
+			args: {
+				file: post.file,
+			}
+		})
 
 	}
 }
