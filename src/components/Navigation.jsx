@@ -28,7 +28,7 @@ class Navigation extends Component {
 				to: "/upload",
 				text: "Upload items"
 			}, {
-				to: "/signout",
+				to: "/",
 				text: "Sign out"
 			}]
 		}
@@ -62,7 +62,7 @@ class Navigation extends Component {
 							{links.map((link) => {
 								return (
 									<NavLink
-										key={link.to}
+										key={link.text}
 										to={link.to}
 										className={link.customClass || "nav-link"}
 										// activeClass="is-active"

@@ -19,9 +19,10 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+	console.log("api/login; req.body.password, req.body.userId: ", req.body.password, req.body.userId);
 	Restaurant.comparePassword(req.body.password)
 	.then((restaurant) => {
-		return restaurant;
+		res.json(restaurant);
 	});
 });
 
@@ -37,7 +38,7 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", (req, res) => {
-	res.send(req);
+	Restaurant.upload()
 })
 
 export default router;
