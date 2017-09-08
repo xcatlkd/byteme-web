@@ -14,25 +14,35 @@ class Login extends Component {
 			};
 		}
 	}
+	_handleChange = (event) => {
+		this.setState({
+			[event.target.name]: [event.target.value].toString(),
+		});
+	}
+
+	_handleSubmit = () => {
+		console.log(this.state);
+	}
 	render() {
 		return (
 			<div className="rest-form">
 				<div className="rest-login-form">
 					<h1>Login</h1>
 					<Segment inverted>
-						<Form inverted>
-							<Form>
+						<Form inverted onSubmit={this._handleSubmit}>
+							{/* <Form> */}
 								<Form.Field required>
-							<label className="name">User Name:</label>
-							<input type="text" name="Name" onChange={this._handleChange}/>
-							<label className="password">Password:</label>
-							<input type="password" name="Password" onChange={this._handleChange}/>
+							<label className="name" name="username">User Name:</label>
+							<input type="text" onChange={this._handleChange} name="username"/>
+
+							<label className="password" name="password">Password:</label>
+							<input type="password" onChange={this._handleChange} name="password"/>
 						<div className="login-button">
 						<Button type="login" onSubmit={this._handleSubmit}>
 								LOGIN</Button>
 						</div>
 					</Form.Field>
-				</Form>
+				{/* </Form> */}
 			</Form>
 		</Segment>
 					</div>

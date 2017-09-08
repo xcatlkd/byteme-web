@@ -13,8 +13,8 @@ export function signup(restaurant) {
 				restaurantName: restaurant.restaurantName,
 			},
 		}).then((res) => {
-			if (res.data) {
-				console.log("actions/restaurant; res.data: ", res.data);
+			if (res) {
+				console.log("actions/restaurant; res: ", res);
 				dispatch({
 					type: "SIGNUP_SUCCESS",
 				})
