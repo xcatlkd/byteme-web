@@ -13,6 +13,7 @@ class Upload extends Component {
 	this.state = {
 		file: "",
 	};
+}
 
 	_handleSubmit = (photo, event) => {
 		event.preventDefault();
