@@ -19,7 +19,7 @@ class Upload extends Component {
 		event.preventDefault();
 		this.props.postUpload(photo);
 	}
-
+}
 	render() {
 		return (
 			<div className="upload-container">
