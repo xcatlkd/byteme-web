@@ -35,7 +35,8 @@ class Navigation extends Component {
 				to: "/",
 				text: "Logout",
 				customClass: "logout",
-			}]
+			}];
+
 		}
 		else {
 			links = [{
@@ -51,7 +52,6 @@ class Navigation extends Component {
 			<div className="Nav">
 				<Menu>
 					<Menu.Menu position = "left">
-						{/* <Menu.Item position = "left"> */}
 						<Link to="/" className="Link-Home">
 							<div className="logo">
 								<img src="../assets/images/restauranticon.png"/>
@@ -59,8 +59,6 @@ class Navigation extends Component {
 							</div>
 						</Link>
 					</Menu.Menu>
-				</Menu>
-				<Menu.Menu>
 					<Menu.Menu position = "right">
 						<div className="nav-buttons">
 							{links.map((link) => {
@@ -72,14 +70,13 @@ class Navigation extends Component {
 										// activeClass="is-active"
 										exact
 										onClick={this._handleLogout}
-									> {link.text}
+									> <Button>{link.text}</Button>
 									</NavLink>
-								)
+								);
 							})}
-							
 						</div>
 					</Menu.Menu>
-				</Menu.Menu>
+				</Menu>
 			</div>
 		);
 	}
