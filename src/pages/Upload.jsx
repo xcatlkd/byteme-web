@@ -42,7 +42,7 @@ class Upload extends Component {
 				<div className="upload-post">
 					<Segment inverted>
 					<Form.Field required>
-					<Form className="upload-form" onSubmit={this._handleSubmit} method="post">
+					<Form className="upload-form" onSubmit={this._handleSubmit} method="post" encType="multipart/form-data">
 					<input type="file" onChange={this._handleFile} name="file" accept="image/*" />
 					<input type="text" placeholder="Name of Food" onChange={this._handleChange} name="title"/>
 					<input type="text" placeholder="Description" onChange={this._handleChange} name="description"/>

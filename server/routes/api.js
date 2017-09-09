@@ -64,7 +64,7 @@ router.post("/upload", upload.single('image'), (req, res) => {
 			username: req.body.username,
 		}}).then((restaurant) => {
 			console.log("promise return: api/upload: restaurant: ", restaurant);
-			restaurant.upload(req.body.file, req.body);
+			restaurant.upload(req.file, req.body);
 		}).then((image) => {
 			if (image) {
 				res.json(image);
