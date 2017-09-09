@@ -1,16 +1,32 @@
-h3, h4, h5 {
-	text-align: center;
+// h3, h4, h5 {
+// 	text-align: center;
+// }
+
+.Image-Gallery {
+	width: 650px;
+	margin: 0 auto;
 }
+
 
 .Images-Container {
 	margin: 0 auto;
-	width: 300px;
+	width: 280px;
+	height: 450;
+	float: left;
+	border: 1px solid #F2F3F4;
 }
 
-.Images {
+.food-name, .food-desc, .food-price {
+	text-align: center;
+}
+
+.food-image {
 	margin: 0 auto;
+	float: none;
+	height: auto;
+	padding-left: 55px;
 }
 
-.Image-Gallery {
-
-}
+// .food-image {
+// 	margin: 0 auto;
+// }
