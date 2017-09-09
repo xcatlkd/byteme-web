@@ -12,30 +12,28 @@ class UserAdmin extends Component {
 	//
 	render() {
 
-        return (
-            <div className="UserAdmin">
-                <h1>Welcome to Your Domain!</h1>
-                <div className="Image-Gallery">
-                    {Test.map((photo, index) => {
-                        return (
-                            <p>
-                                <div className="Images-Container">
-                                    <Link key={photo.id}
-                                        to= {`/photo/${photo.id}`}>
-                                        Name: <h3>{photo.name}</h3>
-                                        <img className="Images"
-                                        src={photo.imageURL}/>
-                                        Description: <h4>{photo.description}</h4>
-                                        Price: <h5>{photo.price}</h5>
-                                    </Link>
-                                </div>
-                            </p>
-                        );
-                    })}
-                </div>
-            </div>
-        );
-    }
+		return (
+			<div className="UserAdmin">
+				<h1>Welcome to Your Domain!</h1>
+				<div className="Image-Gallery">
+					{Test.map((photo, index) => {
+						return (
+							<p>
+								<div className="Images-Container">
+									<Link key={photo.id}
+										to= {`/photo/${photo.id}`}>
+										<h3>{photo.name}</h3>
+										<img className="Images"	src={photo.imageURL}/>
+										<h4>{photo.description}</h4>
+										<h5>{photo.price}</h5>
+									</Link>
+								</div>
+							</p>
+						);
+					})}
+				</div>
+			</div>
+		);
 	}
 
 UserAdmin.propTypes = {

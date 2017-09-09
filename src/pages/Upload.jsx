@@ -25,7 +25,7 @@ class Upload extends Component {
 	}
 	_handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.postUpload(this.state.file, this.state);
+		this.props.postUpload(this.state);
 	}
 
 
@@ -37,10 +37,10 @@ class Upload extends Component {
 					<Segment inverted>
 					<Form.Field required>
 					<Form className="upload-form" onSubmit={this._handleSubmit} method="post">
-					<input type="file" onChange={this._handleSubmit}/>
-					<input type="text" placeholder="Name of Food" onChange={this._handleSubmit} name="FoodName"/>
-					<input type="text" placeholder="Description" onChange={this._handlSubmit} name="Description"/>
-					<input type="text" placeholder="Price" onChange={this._handleSubmit} name="Price"/>
+					<input type="file" onChange={this._handleChange} name="file"/>
+					<input type="text" placeholder="Name of Food" onChange={this._handleChange} name="title"/>
+					<input type="text" placeholder="Description" onChange={this._handleChange} name="description"/>
+					<input type="text" placeholder="Price" onChange={this._handleChange} name="price"/>
 					<Button className="upload-submit" onClick={this._handleSubmit}>Upload Image</Button>
 					</Form>
 					</Form.Field>

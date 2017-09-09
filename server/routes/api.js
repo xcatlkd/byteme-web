@@ -19,10 +19,27 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-	Restaurant.comparePassword(req.body.password)
+	Restaurant.findOne({ where: {
+		username: req.body.username,
+	}})
 	.then((restaurant) => {
-		return restaurant;
-	});
+		console.log("api/login; restaurant: ", restaurant);
+		if (restaurant) {
+			restaurant.comparePassword(req.body.password)
+			.then((valid) => {
+				if (valid) {
+					req.session.restaurantId = restaurant.get("id");
+					req.session.save((err) => {
+						res.json(restaurant);
+						res.redirect("userAdmin/:restaurantId");
+					})
+				}
+				else {
+					res.json(restaurant);
+				}
+			});
+		}
+	})
 });
 
 router.get("/posts", (req, res) => {
@@ -37,7 +54,7 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", (req, res) => {
-	res.send(req);
+	Restaurant.upload()
 })
 
 export default router;

@@ -28,20 +28,19 @@ export function signup(restaurant) {
 	}
 }
 
-export function login() {
+export function login(data) {
 	return (dispatch) => {
 		dispatch({
 			type: "AUTH_PENDING",
 		})
-		console.log("action/restaurant; signup, before API call:");
-		API.post("/signup", {
+		console.log(data);
+		API.post("/login", {
 			args: {
-				username: restaurant.username,
-				password: restaurant.password,
+				username: data.username,
+				password: data.password,
 			},
 		}).then((res) => {
 			if (res) {
-				console.log("actions/restaurant; res: ", res);
 				dispatch({
 					type: "AUTH_SUCCESS",
 				})
@@ -56,8 +55,11 @@ export function login() {
 }
 
 export function logout() {
+	console.log(state);
 	return (dispatch) => {
-
+		dispatch({
+			type: "LOGOUT",
+		})
 	}
 }
 
