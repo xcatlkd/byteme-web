@@ -9,6 +9,7 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
+
 		super(props);
 		this.state = {
 			file: null,
@@ -27,6 +28,7 @@ class Upload extends Component {
 		this.props.postUpload(this.state.file, this.state);
 	}
 
+
 	render() {
 		return (
 			<div className="upload-container">
@@ -36,9 +38,9 @@ class Upload extends Component {
 					<Form.Field required>
 					<Form className="upload-form" onSubmit={this._handleSubmit} method="post">
 					<input type="file" onChange={this._handleSubmit}/>
-					<input type="text" placeholder="Name of Food" onChange={this._handleChange} name="FoodName"/>
-					<input type="text" placeholder="Description" onChange={this._handleChange} name="Description"/>
-					<input type="text" placeholder="Price" onChange={this._handleChange} name="Price"/>
+					<input type="text" placeholder="Name of Food" onChange={this._handleSubmit} name="FoodName"/>
+					<input type="text" placeholder="Description" onChange={this._handlSubmit} name="Description"/>
+					<input type="text" placeholder="Price" onChange={this._handleSubmit} name="Price"/>
 					<Button className="upload-submit" onClick={this._handleSubmit}>Upload Image</Button>
 					</Form>
 					</Form.Field>
