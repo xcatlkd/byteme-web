@@ -9,17 +9,26 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
-	super(props);
-	this.state = {
-		file: "",
-	};
 
-
-	_handleSubmit = (photo, event) => {
+		super(props);
+		this.state = {
+			file: null,
+			title: "",
+			description: "",
+			price: null,
+		};
+	}
+	_handleChange = (event) => {
+		this.setState({
+			[event.target.name]: [event.target.value].toString(),
+		})
+	}
+	_handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.postUpload(photo);
-	};
-}
+		this.props.postUpload(this.state.file, this.state);
+	}
+
+
 	render() {
 		return (
 			<div className="upload-container">
@@ -48,7 +57,7 @@ Upload.propTypes = {
 
 function mapStateToProps(state, props) {
 	return {
-
+		isLoggedIn: state.restaurant.isLoggedIn,
 	};
 
 }
