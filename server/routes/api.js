@@ -53,7 +53,7 @@ router.get("/posts", (req, res) => {
 	res.send("{'TEST': 1}");
 });
 
-router.post("/upload", upload.single('image'), (req, res) => {
+router.post("/upload", upload.single("file"), (req, res) => {
 	// const image = req.file;
 	console.log("router.post /upload;  req.file: ", req.file);
 	if (!req.body.file) {
