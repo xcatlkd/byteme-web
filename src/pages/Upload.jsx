@@ -21,7 +21,7 @@ class Upload extends Component {
 	_handleChange = (event) => {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
-		})
+		});
 	}
 	_handleSubmit = (event) => {
 		event.preventDefault();
@@ -50,6 +50,7 @@ class Upload extends Component {
 		);
 	}
 }
+
 
 Upload.propTypes = {
 
