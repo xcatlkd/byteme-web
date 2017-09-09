@@ -35,11 +35,10 @@ class UserAdmin extends Component {
 			</div>
 		);
 	}
-}
 
 UserAdmin.propTypes = {
 
-}
+};
 
 function mapStateToProps(state, props) {
 	return {

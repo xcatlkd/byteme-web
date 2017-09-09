@@ -9,6 +9,7 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
+
 		super(props);
 		this.state = {
 			file: null,
@@ -26,6 +27,7 @@ class Upload extends Component {
 		event.preventDefault();
 		this.props.postUpload(this.state);
 	}
+
 
 	render() {
 		return (
