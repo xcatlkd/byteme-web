@@ -22,9 +22,10 @@ class Navigation extends Component {
 				to: "/upload",
 				text: "Upload items"
 			}, {
-				to: "/signout",
-				text: "Sign out"
-			}]
+				to: "/",
+				text: "Logout",
+				customClass: "logout",
+			}];
 		}
 		else {
 			links = [{
@@ -41,42 +42,34 @@ class Navigation extends Component {
 			<div className="Nav">
 				<Menu>
 					<Menu.Menu position = "left">
-						{/* <Menu.Item position = "left"> */}
-							<Link to="/" className="Link-Home">
-								<div className="logo">
-									<img src="../assets/images/restauranticon.png"/>
-										Byte Me
-								</div>
-							</Link>
-						{/* </Menu.Item> */}
+
+						<Link to="/" className="Link-Home">
+							<div className="logo">
+								<img src="../assets/images/restauranticon.png"/>
+									Byte Me
+							</div>
+						</Link>
 					</Menu.Menu>
-						<Menu.Menu position = "right">
-							<div className="nav-buttons">
-							<Link to="/signup">
-								<Button>Sign Up</Button>
-							</Link>
-							<Link to="/login">
-								<Button>Login</Button>
-							</Link>
+
+					<Menu.Menu position = "right">
+						<div className="nav-buttons">
+							{links.map((link) => {
+								return (
+									<NavLink
+										key={link.text}
+										to={link.to}
+										className={link.customClass || "nav-link"}
+										// activeClass="is-active"
+										exact
+										onClick={this._handleLogout}
+									> <Button>{link.text}</Button>
+									</NavLink>
+								);
+							})}
 						</div>
-						{/* {links.map((link) => {
-							return (
-								<Button key={link}>
-								<NavLink
-									key={link.to}
-									to={link.to}
-									className="Nav-link"
-									activeClassName="is-active"
-									exact
-									>
-									{link.text}
-						</NavLink>
-					</Button> */}
-					{/* );
-				})} */}
-			</Menu.Menu>
-	</Menu>
-</div>
+					</Menu.Menu>
+				</Menu>
+			</div>
 		);
 	}
 }
