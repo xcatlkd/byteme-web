@@ -1,5 +1,9 @@
 import express from "express";
 import BodyParser from "body-parser";
+import multer from "multer";
+const uploader = multer({
+	dest: "uploads/"
+});
 
 // import models here ##################################
 //import Post from "../models/post";
@@ -13,7 +17,6 @@ router.use(BodyParser.json());
 router.post("/signup", (req, res) => {
 	Restaurant.signup(req)
 	.then((restaurant) => {
-		console.log("success", restaurant.dataValues);
 		res.json(restaurant.dataValues);
 	});
 });
@@ -23,7 +26,6 @@ router.post("/login", (req, res) => {
 		username: req.body.username,
 	}})
 	.then((restaurant) => {
-		console.log("api/login; restaurant: ", restaurant);
 		if (restaurant) {
 			restaurant.comparePassword(req.body.password)
 			.then((valid) => {
@@ -35,7 +37,7 @@ router.post("/login", (req, res) => {
 					})
 				}
 				else {
-					res.json(restaurant);
+					res.json({ error: "Bad username or password" });
 				}
 			});
 		}
@@ -53,8 +55,24 @@ router.get("/posts", (req, res) => {
 	res.send("{'TEST': 1}");
 });
 
-router.post("/upload", (req, res) => {
-	Restaurant.upload()
+router.post("/upload", uploader.single("image"), (req, res) => {
+	const image = req.body.file;
+	console.log("router.post /upload;  req.body.file: ", req.body.file, "image: ", image);
+	if (!req.body.file) {
+		res.json({error: "Invalid file type."});
+	}
+	else {
+		Restaurant.findOne({ where: {
+			username: req.body.username,
+		}}).then((restaurant) => {
+			restaurant.upload(req.body.file, req.body);
+		}).then((image) => {
+			if (image) {
+				res.json(image);
+			}
+		})
+	}
+	console.log(req);
 })
 
 export default router;

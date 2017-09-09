@@ -9,14 +9,19 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
-
 		super(props);
 		this.state = {
-			file: null,
+			file: {},
 			title: "",
 			description: "",
 			price: null,
+			restaurant: this.props.currentRestaurant,
 		};
+	}
+	_handleFile = (event) => {
+		this.setState({
+			file: event.target.files[0],
+		})
 	}
 	_handleChange = (event) => {
 		this.setState({
@@ -30,6 +35,7 @@ class Upload extends Component {
 
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className="upload-container">
 				<h1>Upload Your Photos Here</h1>
@@ -37,7 +43,7 @@ class Upload extends Component {
 					<Segment inverted>
 					<Form.Field required>
 					<Form className="upload-form" onSubmit={this._handleSubmit} method="post">
-					<input type="file" onChange={this._handleChange} name="file"/>
+					<input type="file" onChange={this._handleFile} name="file" accept="image/*" />
 					<input type="text" placeholder="Name of Food" onChange={this._handleChange} name="title"/>
 					<input type="text" placeholder="Description" onChange={this._handleChange} name="description"/>
 					<input type="text" placeholder="Price" onChange={this._handleChange} name="price"/>
@@ -58,6 +64,7 @@ Upload.propTypes = {
 function mapStateToProps(state, props) {
 	return {
 		isLoggedIn: state.restaurant.isLoggedIn,
+		currentRestaurant: state.restaurant.currentRestaurant,
 	};
 
 }
