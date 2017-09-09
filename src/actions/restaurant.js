@@ -73,8 +73,8 @@ export function postUpload(post) {
 		console.log("actions/restaurant: postUpload; post.file: ", post.file);
 		API.post("/upload", {
 			args: {
-				username: post.restaurant,
 				file: post.file,
+				username: post.restaurant,
 				title: post.title,
 				description: post.description,
 				price: post.price,

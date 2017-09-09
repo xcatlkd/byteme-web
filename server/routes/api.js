@@ -1,9 +1,7 @@
 import express from "express";
 import BodyParser from "body-parser";
 import multer from "multer";
-const uploader = multer({
-	dest: "uploads/"
-});
+const upload = multer({	dest: "uploads/" });
 
 // import models here ##################################
 //import Post from "../models/post";
@@ -55,9 +53,9 @@ router.get("/posts", (req, res) => {
 	res.send("{'TEST': 1}");
 });
 
-router.post("/upload", uploader.single("image"), (req, res) => {
-	const image = req.body.file;
-	console.log("router.post /upload;  req.body.file: ", req.body.file, "image: ", image);
+router.post("/upload", upload.single('image'), (req, res) => {
+	// const image = req.file;
+	console.log("router.post /upload;  req.file: ", req.file);
 	if (!req.body.file) {
 		res.json({error: "Invalid file type."});
 	}
@@ -65,6 +63,7 @@ router.post("/upload", uploader.single("image"), (req, res) => {
 		Restaurant.findOne({ where: {
 			username: req.body.username,
 		}}).then((restaurant) => {
+			console.log("promise return: api/upload: restaurant: ", restaurant);
 			restaurant.upload(req.body.file, req.body);
 		}).then((image) => {
 			if (image) {
