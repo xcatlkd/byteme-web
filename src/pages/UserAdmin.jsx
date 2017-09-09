@@ -35,7 +35,7 @@ class UserAdmin extends Component {
 			</div>
 		);
 	}
-
+}
 UserAdmin.propTypes = {
 
 };
