@@ -19,11 +19,27 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-	console.log("api/login; req.body.password, req.body.userId: ", req.body.password, req.body.userId);
-	Restaurant.comparePassword(req.body.password)
+	Restaurant.findOne({ where: {
+		username: req.body.username,
+	}})
 	.then((restaurant) => {
-		res.json(restaurant);
-	});
+		console.log("api/login; restaurant: ", restaurant);
+		if (restaurant) {
+			restaurant.comparePassword(req.body.password)
+			.then((valid) => {
+				if (valid) {
+					req.session.restaurantId = restaurant.get("id");
+					req.session.save((err) => {
+						res.json(restaurant);
+						res.redirect("userAdmin/:restaurantId");
+					})
+				}
+				else {
+					res.json(restaurant);
+				}
+			});
+		}
+	})
 });
 
 router.get("/posts", (req, res) => {

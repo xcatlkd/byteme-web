@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Button, Menu } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import img from "assets/images/restauranticon.png";
+import { logout } from "actions/restaurant";
 
 class Navigation extends Component {
 	constructor(props) {
@@ -13,23 +14,27 @@ class Navigation extends Component {
 			isLoggedIn: this.props.isLoggedIn,
 		}
 	}
+	_handleLogout = (event) => {
+		console.log("handleLogout; event.target.className: ", event.target.className);
+		if (event.target.className === "logout") {
+			this.props.logout();
+		}
+	}
 
 	render() {
 		console.log(this.props);
 		let links;
 		if (this.props.isLoggedIn) {
 			links = [{
-				to: "/",
-				text: "Home"
-			}, {
 				to: "/userAdmin",
-				text: "Your Menu"
+				text: "Your Menu",
 			}, {
 				to: "/upload",
-				text: "Upload items"
+				text: "Upload items",
 			}, {
 				to: "/",
-				text: "Sign out"
+				text: "Logout",
+				customClass: "logout",
 			}]
 		}
 		else {
@@ -41,7 +46,6 @@ class Navigation extends Component {
 				text: "Login",
 			}];
 		}
-
 
   	return (
 			<div className="Nav">
@@ -67,6 +71,7 @@ class Navigation extends Component {
 										className={link.customClass || "nav-link"}
 										// activeClass="is-active"
 										exact
+										onClick={this._handleLogout}
 									> {link.text}
 									</NavLink>
 								)
@@ -93,4 +98,4 @@ function mapStateToProps(state, props) {
 
 
 
-export default connect(mapStateToProps, {  })(Navigation);
+export default connect(mapStateToProps, { logout })(Navigation);

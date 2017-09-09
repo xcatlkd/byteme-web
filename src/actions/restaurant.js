@@ -28,16 +28,16 @@ export function signup(restaurant) {
 	}
 }
 
-export function login(restaurant) {
+export function login(data) {
 	return (dispatch) => {
 		dispatch({
 			type: "AUTH_PENDING",
 		})
-		console.log(restaurant);
+		console.log(data);
 		API.post("/login", {
 			args: {
-				username: restaurant.username,
-				password: restaurant.password,
+				username: data.username,
+				password: data.password,
 			},
 		}).then((res) => {
 			if (res) {
@@ -55,6 +55,7 @@ export function login(restaurant) {
 }
 
 export function logout() {
+	console.log(state);
 	return (dispatch) => {
 		dispatch({
 			type: "LOGOUT",
