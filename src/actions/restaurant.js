@@ -16,7 +16,7 @@ export function signup(restaurant) {
 			if (res) {
 				console.log("actions/restaurant; res: ", res);
 				dispatch({
-					type: "SIGNUP_SUCCESS",
+					type: "AUTH_SUCCESS",
 				})
 			}
 			else {
@@ -28,21 +28,51 @@ export function signup(restaurant) {
 	}
 }
 
-export function login() {
+export function login(data) {
 	return (dispatch) => {
-		
-
+		dispatch({
+			type: "AUTH_PENDING",
+		})
+		console.log(data);
+		API.post("/login", {
+			args: {
+				username: data.username,
+				password: data.password,
+			},
+		}).then((res) => {
+			if (res) {
+				dispatch({
+					type: "AUTH_SUCCESS",
+				})
+			}
+			else {
+				console.log(res.error);
+			}
+		}).catch((error) => {
+			console.error("Something went wrong: ", error);
+		});
 	}
 }
 
 export function logout() {
+	console.log(state);
 	return (dispatch) => {
-
+		dispatch({
+			type: "LOGOUT",
+		})
 	}
 }
 
-export function postUpload() {
+export function postUpload(post) {
 	return (dispatch) => {
+		dispatch({
+			type: "UPLOAD_PENDING",
+		})
+		API.post("/upload", {
+			args: {
+				file: post.file,
+			}
+		})
 
 	}
 }

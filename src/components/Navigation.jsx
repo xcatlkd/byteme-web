@@ -5,27 +5,38 @@ import { connect } from "react-redux";
 import { Button, Menu } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import img from "assets/images/restauranticon.png";
+import { logout } from "actions/restaurant";
 
 class Navigation extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isLoggedIn: this.props.isLoggedIn,
+		}
+	}
+	_handleLogout = (event) => {
+		console.log("handleLogout; event.target.className: ", event.target.className);
+		if (event.target.className === "logout") {
+			this.props.logout();
+		}
+	}
 
 	render() {
 		console.log(this.props);
 		let links;
 		if (this.props.isLoggedIn) {
 			links = [{
-				to: "/",
-				text: "Home"
-			}, {
 				to: "/userAdmin",
-				text: "Your Menu"
+				text: "Your Menu",
 			}, {
 				to: "/upload",
-				text: "Upload items"
+				text: "Upload items",
 			}, {
 				to: "/",
 				text: "Logout",
 				customClass: "logout",
 			}];
+
 		}
 		else {
 			links = [{
@@ -37,12 +48,10 @@ class Navigation extends Component {
 			}];
 		}
 
-
   	return (
 			<div className="Nav">
 				<Menu>
 					<Menu.Menu position = "left">
-
 						<Link to="/" className="Link-Home">
 							<div className="logo">
 								<img src="../assets/images/restauranticon.png"/>
@@ -50,7 +59,6 @@ class Navigation extends Component {
 							</div>
 						</Link>
 					</Menu.Menu>
-
 					<Menu.Menu position = "right">
 						<div className="nav-buttons">
 							{links.map((link) => {
@@ -87,4 +95,4 @@ function mapStateToProps(state, props) {
 
 
 
-export default connect(mapStateToProps, {  })(Navigation);
+export default connect(mapStateToProps, { logout })(Navigation);
