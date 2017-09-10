@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Segment, Form, Button } from "semantic-ui-react";
+import { login } from "actions/restaurant";
 
 class Login extends Component {
 	constructor(props) {
@@ -20,8 +21,11 @@ class Login extends Component {
 		});
 	}
 
-	_handleSubmit = () => {
+	_handleSubmit = (event) => {
 		console.log(this.state);
+		console.log(this.props);
+		event.preventDefault();
+		this.props.login(this.state);
 	}
 	render() {
 		return (
@@ -64,4 +68,4 @@ function mapStateToProps(state, props) {
 
 
 
-export default connect(mapStateToProps, {  })(Login);
+export default connect(mapStateToProps, { login })(Login);

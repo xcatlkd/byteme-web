@@ -1,31 +1,32 @@
 const INITIAL_STATE = {
 
 	isLoggedIn: false,
-	userPosts: [],
+	posts: [],
+	currentRestaurant: null,
 
 
 };
 
 function restaurantReducer(state = INITIAL_STATE, action) {
 	switch(action.type) {
-		case "SIGNUP_PENDING":
+		case "AUTH_PENDING":
 			return {
 				...state,
+				isLoggedIn: false,
+				currentRestaurant: null,
 			}
-		case "SIGNUP_SUCCESS":
+		case "AUTH_SUCCESS":
+			console.log("reducer; AUTH_SUCCESS", state);
 			return {
 				...state,
 				isLoggedIn: true,
+				currentRestaurant: action.currentRestaurant,
 			}
-		case "LOGIN_SUCCESS":
-			return {
-				...state,
-				isLoggedIn: true,
-			};
 		case "LOGOUT":
 			return {
 				...state,
 				isLoggedIn: false,
+				currentRestaurant: null,
 			};
 		case "SET_USER_POSTS":
 			return {
