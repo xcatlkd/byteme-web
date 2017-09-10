@@ -17,6 +17,7 @@ export function signup(restaurant) {
 				console.log("actions/restaurant; res: ", res);
 				dispatch({
 					type: "AUTH_SUCCESS",
+					currentRestaurant: restaurant.username,
 				})
 			}
 			else {
@@ -33,16 +34,17 @@ export function login(data) {
 		dispatch({
 			type: "AUTH_PENDING",
 		})
-		console.log(data);
 		API.post("/login", {
 			args: {
 				username: data.username,
 				password: data.password,
 			},
 		}).then((res) => {
+			console.log("actions/restaurant; login, res", res);
 			if (res) {
 				dispatch({
 					type: "AUTH_SUCCESS",
+					currentRestaurant: data.username,
 				})
 			}
 			else {
@@ -68,10 +70,34 @@ export function postUpload(post) {
 		dispatch({
 			type: "UPLOAD_PENDING",
 		})
+		console.log("actions/restaurant: postUpload; post.file: ", post.file);
 		API.post("/upload", {
 			args: {
 				file: post.file,
+				username: post.restaurant,
+				title: post.title,
+				description: post.description,
+				price: post.price,
+			},
+		}).then((res) => {
+			console.log("actions/restaurant; postUpload, res: ", res);
+			if (res.data) {
+				dispatch({
+					type: "UPLOAD_SUCCESS",
+					data: res.data,
+				})
 			}
+			else {
+				dispatch({
+					type: "UPLOAD_FAILURE",
+					error: res.error,
+				})
+			}
+		}).catch((error) => {
+			dispatch({
+				type: "UPLOAD_FAILURE",
+				error: "Something went wrong",
+			})
 		})
 
 	}
