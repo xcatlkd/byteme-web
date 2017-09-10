@@ -56,7 +56,7 @@ router.get("/posts", (req, res) => {
 router.post("/upload", upload.single("file"), (req, res) => {
 	// const image = req.file;
 	console.log("router.post /upload;  req.file: ", req.file);
-	if (!req.body.file) {
+	if (!req.file) {
 		res.json({error: "Invalid file type."});
 	}
 	else {
@@ -64,14 +64,24 @@ router.post("/upload", upload.single("file"), (req, res) => {
 			username: req.body.username,
 		}}).then((restaurant) => {
 			console.log("promise return: api/upload: restaurant: ", restaurant);
-			restaurant.upload(req.file, req.body);
-		}).then((image) => {
+			restaurant.upload(req.file, req.body)
+		.then((image) => {
 			if (image) {
+				console.log("Successfully uploaded image.")
 				res.json(image);
 			}
-		})
+			else {
+				console.error("Something went wrong.");
+			}
+		}).catch((error) => {
+			console.error(error);
+		});
+		}).then((success) => {
+			console.log("Success?");
+		}).catch((error) => {
+			console.error(error);
+		});
 	}
-	console.log(req);
 })
 
 export default router;
