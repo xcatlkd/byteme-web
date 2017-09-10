@@ -57,7 +57,7 @@ export function login(data) {
 }
 
 export function logout() {
-	console.log(state);
+	console.log("logout state: ", state);
 	return (dispatch) => {
 		dispatch({
 			type: "LOGOUT",
