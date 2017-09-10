@@ -34,23 +34,20 @@ class Login extends Component {
 					<h1>Login</h1>
 					<Segment inverted>
 						<Form inverted onSubmit={this._handleSubmit}>
-							{/* <Form> */}
-								<Form.Field required>
-							<label className="name" name="username">User Name:</label>
-							<input type="text" onChange={this._handleChange} name="username"/>
-
-							<label className="password" name="password">Password:</label>
-							<input type="password" onChange={this._handleChange} name="password"/>
-						<div className="login-button">
-						<Button type="login" onSubmit={this._handleSubmit}>
-								LOGIN</Button>
-						</div>
-					</Form.Field>
-				{/* </Form> */}
-			</Form>
-		</Segment>
-					</div>
+							<Form.Field required>
+								<label className="name" name="username">User Name:</label>
+								<input type="text" onChange={this._handleChange} name="username"/>
+								<label className="password" name="password">Password:</label>
+								<input type="password" onChange={this._handleChange} name="password"/>
+								<div className="login-button">
+									<Button type="login" onSubmit={this._handleSubmit}>
+										LOGIN</Button>
+								</div>
+							</Form.Field>
+						</Form>
+					</Segment>
 				</div>
+			</div>
 		);
 	}
 }
