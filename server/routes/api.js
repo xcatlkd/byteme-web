@@ -31,7 +31,6 @@ router.post("/login", (req, res) => {
 					req.session.restaurantId = restaurant.get("id");
 					req.session.save((err) => {
 						res.json(restaurant);
-						res.redirect("userAdmin/:restaurantId");
 					})
 				}
 				else {

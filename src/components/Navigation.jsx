@@ -15,7 +15,6 @@ class Navigation extends Component {
 		}
 	}
 	_handleLogout = (event) => {
-		console.log("_handleLogout; event.target.parentNode.className: ", event.target.parentNode.className);
 		if (event.target.parentNode.className === "logout") {
 			this.props.logout();
 		}
