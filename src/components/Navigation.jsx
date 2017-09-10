@@ -12,7 +12,7 @@ class Navigation extends Component {
 		super(props);
 		this.state = {
 			isLoggedIn: this.props.isLoggedIn,
-		}
+		};
 	}
 	_handleLogout = (event) => {
 		console.log("handleLogout; event.target.className: ", event.target.className);
@@ -54,7 +54,7 @@ class Navigation extends Component {
 					<Menu.Menu position = "left">
 						<Link to="/" className="Link-Home">
 							<div className="logo">
-								<img src="../assets/images/restauranticon.png"/>
+								<img src="~assets/images/restauranticon.png"/>
 									Byte Me
 							</div>
 						</Link>
