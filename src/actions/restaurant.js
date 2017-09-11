@@ -34,6 +34,7 @@ export function login(data) {
 		dispatch({
 			type: "AUTH_PENDING",
 		})
+		console.log("action data: ", data);
 		API.post("/login", {
 			args: {
 				username: data.username,
@@ -48,7 +49,7 @@ export function login(data) {
 				})
 			}
 			else {
-				console.log(res.error);
+				console.log(res);
 			}
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
@@ -57,7 +58,7 @@ export function login(data) {
 }
 
 export function logout() {
-	console.log(state);
+	console.log("logout state: ", state);
 	return (dispatch) => {
 		dispatch({
 			type: "LOGOUT",

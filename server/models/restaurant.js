@@ -101,6 +101,7 @@ function hashUserPassword(restaurant) {
 };
 
 Restaurant.prototype.comparePassword = function(password) {
+	console.log("model; compare password");
 	return bcrypt.compare(password, this.get("password"));
 };
 

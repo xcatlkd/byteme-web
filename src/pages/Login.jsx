@@ -23,7 +23,6 @@ class Login extends Component {
 
 	_handleSubmit = (event) => {
 		console.log(this.state);
-		console.log(this.props);
 		event.preventDefault();
 		this.props.login(this.state);
 	}
