@@ -25,6 +25,7 @@ router.post("/login", (req, res) => {
 	}})
 	.then((restaurant) => {
 		if (restaurant) {
+			console.log("API/login: restaurant: ", restaurant);
 			restaurant.comparePassword(req.body.password)
 			.then((valid) => {
 				if (valid) {
@@ -36,7 +37,11 @@ router.post("/login", (req, res) => {
 				else {
 					res.json({ error: "Bad username or password" });
 				}
+			}).catch((error) => {
+				res.json({ error: "Something went wrong"});
 			});
+		} else {
+			res.json({ error: "Bad username or password" });
 		}
 	})
 });

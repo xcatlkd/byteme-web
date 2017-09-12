@@ -30,15 +30,8 @@ class Upload extends Component {
 	}
 	_handleSubmit = (event) => {
 		event.preventDefault();
-<<<<<<< Updated upstream
 		this.props.postUpload(this.state);
 	}
-=======
-		this.props.postUpload(photo);
-	};
-}
->>>>>>> Stashed changes
-
 
 	render() {
 		console.log(this.state);
