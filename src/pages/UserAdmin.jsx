@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Test from "json/test.json";
 import PropTypes from "prop-types";
 import { getAll } from "actions/restaurant";
+// const imagePath = require("/src/";)
 
 class UserAdmin extends Component {
 	constructor(props) {
