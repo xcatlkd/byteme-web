@@ -16,12 +16,12 @@ class Home extends Component {
 	render() {
 		let content;
 		if (this.state.isLoggedIn) {
-			content = (<div className="home-body">
+			content = (<div>
 				Welcome back!
 				</div>)
 		}
 		else {
-			content = (<div className="home-body">
+			content = (<div>
 				Welcome to Byte Me! If you're a restaurateur and/or food establishment owner,
 				 <Link to="/signup"> sign up</Link> for an account to put your business out there!
 				</div>)
@@ -33,7 +33,7 @@ class Home extends Component {
 				{/* <Grid.Column> */}
 			<div className="home-container">
 				<h1 className="landing-header">Byte Me!</h1>
-				<div className="home-body">{content}</div>
+				<div className="home-text">{content}</div>
 			</div>
 		{/* </Grid.Column> */}
 	</Grid>
