@@ -1,6 +1,32 @@
 body {
-	background-image: ('/src/assets/images/landing.jpg');
+	height: 100%;
+}
+
+.home-body {
+	background-image: url('https://i.imgur.com/n9iGItN.jpg');
+	background-position: center;
 	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+}
+
+.home-container {
+	margin: 0 auto;
+	width: 650px;
+	height: 380px;
+	background: rgba(76, 175, 80, 0.3);
+	font-size: 33px;
+	font-weight: bold;
+	text-shadow: 2px 2px 4px #EAEDED;
+	text-align: center;
+	border: 1px solid #F2F3F4;
+	box-shadow: 2px 2px 4px #EAEDED;
+	line-height: 150%;
+	padding-top: 20px;
+}
+
+.home-text {
+
 }
 
 .landing-header {
@@ -8,15 +34,10 @@ body {
 	font-size: 48px;
 }
 
-/**** Insert a color background, for intro text but need to figure out
-why image is not rendering ***/
 
 .Intro-text {
 	margin: 0 auto;
 	font-size: 20px;
 	padding-top: 20px;
-}
-
-.Home-body {
 
 }
