@@ -28,14 +28,16 @@ class Home extends Component {
 		}
 		
 		return (
-			<Grid textAlign='center' columns={2}>
-				<Grid.Column>
-			<div className="Intro-text">
+			<div className="home-body">
+			<Grid textAlign='center'>
+				{/* <Grid.Column> */}
+			<div className="home-container">
 				<h1 className="landing-header">Byte Me!</h1>
 				<div className="home-body">{content}</div>
 			</div>
-		</Grid.Column>
+		{/* </Grid.Column> */}
 	</Grid>
+	</div>
 		);
 	}
 }
