@@ -104,9 +104,35 @@ export function postUpload(post) {
 	}
 }
 
-export function getAll() {
+export function getAll(restaurant) {
 	return (dispatch) => {
-		
+		dispatch({ 
+			type: "LOADING",
+		})
 
+		API.get("/posts", {
+			args: {
+				restaurantId: restaurant.id,
+			}
+		}).then((res) => {
+			console.log("actions/restaurant; getAll, res: ", res);
+			if (res.data) {
+				dispatch({
+					type: "LOAD_SUCCESS",
+					posts: res.data,
+				})
+			}
+			else {
+				dispatch({
+					type: "LOAD_FAILURE",
+					error: res.error,
+				})
+			}
+		}).catch((error) => {
+			dispatch({
+				type: "LOAD_FAILURE",
+				error: res.error,
+			})
+		});
 	}
 }
