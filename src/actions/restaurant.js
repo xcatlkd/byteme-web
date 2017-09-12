@@ -116,10 +116,10 @@ export function getAll(restaurant) {
 			}
 		}).then((res) => {
 			console.log("actions/restaurant; getAll, res: ", res);
-			if (res.data) {
+			if (res) {
 				dispatch({
 					type: "LOAD_SUCCESS",
-					posts: res.data,
+					posts: res,
 				})
 			}
 			else {

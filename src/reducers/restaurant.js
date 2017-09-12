@@ -40,12 +40,14 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				isLoading: true,
 			}
 		case "LOAD_SUCCESS":
+			console.log("reducer/ LOADSUCCESS; action.posts: ", action.posts);
 			return {
 				...state,
 				isLoading: false,
 				posts: action.posts,
 			}
 		case "LOAD_FAILURE":
+			console.log("reducer/ LOADFAIL; action.posts: ", action.posts);
 			return {
 				...state,
 				isLoading: false,

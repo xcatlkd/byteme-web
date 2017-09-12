@@ -9,16 +9,22 @@ import { getAll } from "actions/restaurant";
 class UserAdmin extends Component {
 	constructor(props) {
 		super(props);
-
+    this.state = {
+      posts: [],
+    }
   }
 	
   componentDidMount() {
     this.props.getAll(this.props.currentRestaurant);
+    this.setState({
+      posts: this.props.posts,
+    })
+    console.log("compomnentDidMount; this.state: ", this.state, "this.props: ", this.props);
   }
 
 	render() {
     const { posts, isLoading } = this.props;
-    console.log(this.props);
+    console.log("render useradmin: this.props: ",this.props);
 
     let content;
     if (isLoading) {
@@ -40,7 +46,7 @@ class UserAdmin extends Component {
                         <p><b>Name:</b> {photo.name}</p>
                     </div>
                       <div className="food-image">
-                        <img src={photo.imageURL}/>
+                        <img src={`/src/uploads/${photo.id}.jpg`}/>
                       </div>
                         <div className="food-desc">
                           <b>Description:</b> {photo.description}
