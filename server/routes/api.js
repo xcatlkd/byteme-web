@@ -6,6 +6,8 @@ const upload = multer({	dest: "uploads/" });
 // import models here ##################################
 //import Post from "../models/post";
 import Restaurant from "../models/restaurant";
+import Post from "../models/post";
+
 
 const router = express.Router();
 router.use(BodyParser.json());
@@ -42,14 +44,35 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/posts", (req, res) => {
-	/* Post.findAll({
-		where: restaurantId === req.session.restaurantId,
-	})
-	.then(() => {
-		res.send("H1@");
-	}) */
+	if (req.body.restaurantId) {
+		Post.findAll({
+			where: restaurantId === req.body.restaurantId,
+		})
+		.then((images) => {
+			if (images) {
+				res.json(images);
+			}
+			else {
+				res.json({ error: "Something went wrong" });
+			}
+		}).catch((error) => {
+			return error;
+		});
+	}
+	else {
+		Post.findAll({
 
-	res.send("{'TEST': 1}");
+		}).then((images) => {
+			if (images) {
+				res.json(images);
+			}
+			else {
+				res.json({ error: "Something went wrong" });
+			}
+		}).catch((error) => {
+			return error;
+		});
+	}
 });
 
 router.post("/upload", upload.single("file"), (req, res) => {
