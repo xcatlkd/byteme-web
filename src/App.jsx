@@ -20,6 +20,29 @@ import PageError from "pages/404";
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props); {
+      // this.state = getState();
+    }
+
+  }
+
+
+  _requireAuth = (nextState, replace) => {
+    if (isLoggedIn) {
+      console.log("app.js; _requireAuth: true")
+      replace({
+        pathname: "/useradmin",
+      })
+    }
+    else if (!isLoggedIn) {
+      console.log("app.js; _requireAuth: false")
+      replace({
+        pathname: "/login",
+      })
+    }
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -28,10 +51,10 @@ class App extends React.Component {
             <Navigation/>
             <Switch>
               <Route exact path= "/" component={Home}/>
-              <Route exact path="/Signup" component={SignUp}/>
-              <Route exact path="/Login" component={Login}/>
-              <Route exact path="/UserAdmin" component={UserAdmin}/>
-              <Route exact path="/Upload" component={Upload}/>
+              <Route exact path="/Signup" component={SignUp} onEnter={this._requireAuth}/>
+              <Route exact path="/Login" component={Login} onEnter={this._requireAuth}/>
+              <Route exact path="/UserAdmin" component={UserAdmin} onEnter={this._requireAuth}/>
+              <Route exact path="/Upload" component={Upload} onEnter={this._requireAuth}/>
               <Route exact path="/*" component={PageError}/>
             </Switch>
             </div>

@@ -43,5 +43,4 @@ const Post = sql.define("post", {
 // table dependencies
 import Restaurant from "./restaurant";
 
-
 export default Post;

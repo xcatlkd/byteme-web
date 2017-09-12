@@ -9,14 +9,19 @@ import { postUpload } from "actions/restaurant";
 class Upload extends Component {
 
 	constructor(props) {
-
 		super(props);
 		this.state = {
-			file: null,
+			file: {},
 			title: "",
 			description: "",
 			price: null,
+			restaurant: this.props.currentRestaurant,
 		};
+	}
+	_handleFile = (event) => {
+		this.setState({
+			file: event.target.files[0],
+		})
 	}
 	_handleChange = (event) => {
 		this.setState({
@@ -25,23 +30,31 @@ class Upload extends Component {
 	}
 	_handleSubmit = (event) => {
 		event.preventDefault();
+<<<<<<< Updated upstream
 		this.props.postUpload(this.state);
 	}
+=======
+		this.props.postUpload(photo);
+	};
+}
+>>>>>>> Stashed changes
 
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className="upload-container">
 				<h1>Upload Your Photos Here</h1>
 				<div className="upload-post">
 					<Segment inverted>
 					<Form.Field required>
-					<Form className="upload-form" onSubmit={this._handleSubmit} method="post">
-					<input type="file" onChange={this._handleChange} name="file"/>
+					<Form className="upload-form" action="/api/upload" method="POST" encType="multipart/form-data">
+					<input type="file" onChange={this._handleFile} name="file" accept="image/*" />
 					<input type="text" placeholder="Name of Food" onChange={this._handleChange} name="title"/>
 					<input type="text" placeholder="Description" onChange={this._handleChange} name="description"/>
 					<input type="text" placeholder="Price" onChange={this._handleChange} name="price"/>
-					<Button className="upload-submit" onClick={this._handleSubmit}>Upload Image</Button>
+					<input type="hidden" name="username" value={this.state.restaurant} />
+					<Button className="upload-submit">Upload Image</Button>
 					</Form>
 					</Form.Field>
 			</Segment>
@@ -59,6 +72,7 @@ Upload.propTypes = {
 function mapStateToProps(state, props) {
 	return {
 		isLoggedIn: state.restaurant.isLoggedIn,
+		currentRestaurant: state.restaurant.currentRestaurant,
 	};
 
 }
