@@ -53,7 +53,7 @@ Restaurant.prototype.upload = function(file, body) {
 	let image;
 	console.log("restaurant model; upload, file: ", file, "body: ", body)
 	return this.createPost({
-			id: file.filename,
+			id: body.restaurantId,
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
@@ -70,6 +70,7 @@ Restaurant.prototype.upload = function(file, body) {
 		.then(function() {
 			// If I'm an image
 			if (file.mimetype.includes("image/")) {
+				conosle.log("Jimp  file.path: ", file.path);
 				return Jimp.read(file.path)
 			.then(function(img) {
 					img.quality(80);

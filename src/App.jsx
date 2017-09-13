@@ -27,7 +27,7 @@ import PageError from "pages/404";
 class App extends React.Component {
   constructor(props) {
     super(props); {
-      this.state = getState();
+      // this.state = getState();
     }
 
   }

@@ -1,8 +1,23 @@
 import express from "express";
 import BodyParser from "body-parser";
 import multer from "multer";
-const upload = multer({	dest: "uploads/" });
+import multerS3 from "multer-s3";
+import AWS from "aws-sdk";
 
+AWS.config.loadFromPath("./s3Config.json");
+const s3 = new AWS.S3();
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'bytemeimagestorage',
+        metadata: function (req, file, cb) {
+            cb(null, { fieldName: "x-amz-meta-" + file.filename });
+        },
+        key: function (req, file, cb) {
+            cb(null, Date.now().toString())
+        }
+    })
+  })
 // import models here ##################################
 //import Post from "../models/post";
 import Restaurant from "../models/restaurant";
@@ -82,13 +97,15 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", upload.single("file"), (req, res) => {
+	console.log("api upload/  req.body: ", req.body);
 	if (!req.file) {
 		res.json({error: "Invalid file type."});
 	}
 	else {
 		Restaurant.findOne({ where: {
-			username: req.body.username,
+			id: req.body.restaurantId,
 		}}).then((restaurant) => {
+			console.log("api/upload; restaurant: ", restaurant)
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
