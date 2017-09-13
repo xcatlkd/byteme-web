@@ -1,15 +1,15 @@
-const User = require('../models/user');
+const Restaurant = require('../models/restaurant');
 
 function deserializeUser(req, res, next) {
-	if (req.session.userid) {
-		User.findById(req.session.userid) 
-		.then(function(user) {
+	if (req.session.restaurantid) {
+		Restaurant.findById(req.session.restaurantId) 
+		.then(function(restaurant) {
 
 			
-			if (user) {
-				req.user = user;
+			if (restaurant) {
+				req.restaurant = restaurant;
 			} else {
-				req.session.userid = null;
+				req.session.restaurantid = null;
 			}
 			next();
 		})

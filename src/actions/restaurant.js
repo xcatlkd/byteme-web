@@ -5,7 +5,6 @@ export function signup(restaurant) {
 		dispatch({
 			type: "SIGNUP_PENDING",
 		})
-		console.log("action/restaurant; signup, before API call:");
 		API.post("/signup", {
 			args: {
 				username: restaurant.username,
@@ -14,7 +13,6 @@ export function signup(restaurant) {
 			},
 		}).then((res) => {
 			if (res) {
-				console.log("actions/restaurant; res: ", res);
 				dispatch({
 					type: "AUTH_SUCCESS",
 					currentRestaurant: restaurant.username,
@@ -34,18 +32,16 @@ export function login(data) {
 		dispatch({
 			type: "AUTH_PENDING",
 		})
-		console.log("action data: ", data);
 		API.post("/login", {
 			args: {
 				username: data.username,
 				password: data.password,
 			},
 		}).then((res) => {
-			console.log("actions/restaurant; login, res", res);
 			if (res) {
 				dispatch({
 					type: "AUTH_SUCCESS",
-					currentRestaurant: data.username,
+					currentRestaurant: res,
 				})
 			}
 			else {
@@ -58,7 +54,6 @@ export function login(data) {
 }
 
 export function logout() {
-	console.log("logout state: ", state);
 	return (dispatch) => {
 		dispatch({
 			type: "LOGOUT",
@@ -71,7 +66,6 @@ export function postUpload(post) {
 		dispatch({
 			type: "UPLOAD_PENDING",
 		})
-		console.log("actions/restaurant: postUpload; post.file: ", post.file);
 		API.post("/upload", {
 			args: {
 				file: post.file,
@@ -81,7 +75,6 @@ export function postUpload(post) {
 				price: post.price,
 			},
 		}).then((res) => {
-			console.log("actions/restaurant; postUpload, res: ", res);
 			if (res.data) {
 				dispatch({
 					type: "UPLOAD_SUCCESS",
@@ -105,11 +98,12 @@ export function postUpload(post) {
 }
 
 export function getAll(restaurant) {
+	console.log("action/restaurants  getAll, restaurant: ", restaurant);
 	return (dispatch) => {
 		dispatch({ 
 			type: "LOADING",
 		})
-
+		console.log("restaurant.id", restaurant.id);
 		API.get("/posts", {
 			args: {
 				restaurantId: restaurant.id,

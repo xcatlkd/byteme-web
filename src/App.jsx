@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
 
-const store = createStore(reducers, applyMiddleware(reduxThunk));
+const store = createStore(reducers, window._INITIAL_REDUX_STATE, applyMiddleware(reduxThunk));
 
 import Home from "pages/Home";
 import Navigation from "./components/Navigation";

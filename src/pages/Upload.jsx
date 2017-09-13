@@ -36,7 +36,6 @@ class Upload extends Component {
 
 
 	render() {
-		console.log(this.state);
 		return (
 			<div className="upload-container">
 				<h1>Upload Your Photos Here</h1>
