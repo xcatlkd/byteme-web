@@ -56,7 +56,7 @@ function renderHtmlWithReduxState(req, res, html) {
 			currentRestaurant: req.restaurant,
 		}
 	};
-
+	console.log(html);
 	const reduxHtml = html.replace("undefined", JSON.stringify(reduxState));
 	res.end(reduxHtml);
 }
