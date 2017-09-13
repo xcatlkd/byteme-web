@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 import connectSessionSerialize from "connect-session-sequelize";
 
 import sql from "./util/sql";
-//import deserializeUser from "./middleware/deserializeUser";
+import deserializeUser from "./middleware/deserializeUser";
 const SessionStore = connectSessionSerialize(session.Store);
 
 
@@ -27,7 +27,7 @@ app.use(session({
 	resave: false
 }));
 app.use(express.static('assets'));
-// app.use(deserializeUser);
+app.use(deserializeUser);
 
 // routing #################################
 

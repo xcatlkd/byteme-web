@@ -44,9 +44,10 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/posts", (req, res) => {
-	if (req.body.restaurantId) {
+	console.log("api/posts req.query: ", req.query);
+	if (req.query.restaurantId) {
 		Post.findAll({
-			where: restaurantId === req.body.restaurantId,
+			where: { restaurantId: req.query.restaurantId, }
 		})
 		.then((images) => {
 			if (images) {
@@ -76,8 +77,6 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", upload.single("file"), (req, res) => {
-	// const image = req.file;
-	console.log("router.post /upload;  req.file: ", req.file);
 	if (!req.file) {
 		res.json({error: "Invalid file type."});
 	}
@@ -85,18 +84,16 @@ router.post("/upload", upload.single("file"), (req, res) => {
 		Restaurant.findOne({ where: {
 			username: req.body.username,
 		}}).then((restaurant) => {
-			console.log("promise return: api/upload: restaurant: ", restaurant);
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
-				console.log("Successfully uploaded image.")
 				res.json(image);
 			}
 			else {
-				console.error("Something went wrong.");
 			}
 		}).catch((error) => {
 			console.error(error);
+			res.send("error", error);
 		});
 		}).then((success) => {
 			console.log("Success?");
@@ -105,5 +102,12 @@ router.post("/upload", upload.single("file"), (req, res) => {
 		});
 	}
 })
+
+router.get("/logout", (req, res) => {
+	console.log(req.session);
+	req.session.restaurantId = null,
+	res.send("User logged out.");
+})
+
 
 export default router;
