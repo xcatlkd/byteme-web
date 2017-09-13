@@ -103,4 +103,11 @@ router.post("/upload", upload.single("file"), (req, res) => {
 	}
 })
 
+router.get("/logout", (req, res) => {
+	console.log(req.session);
+	req.session.restaurantId = null,
+	res.send("User logged out.");
+})
+
+
 export default router;

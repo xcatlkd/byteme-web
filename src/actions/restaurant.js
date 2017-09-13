@@ -60,6 +60,7 @@ export function logout() {
 		dispatch({
 			type: "LOGOUT",
 		})
+		API.get("/logout");
 	}
 }
 
