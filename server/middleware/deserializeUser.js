@@ -1,7 +1,7 @@
-const Restaurant = require('../models/restaurant');
+import Restaurant from '../models/restaurant';
 
 function deserializeUser(req, res, next) {
-	if (req.session.restaurantid) {
+	if (req.session.restaurantId) {
 		Restaurant.findById(req.session.restaurantId) 
 		.then(function(restaurant) {
 
@@ -9,7 +9,7 @@ function deserializeUser(req, res, next) {
 			if (restaurant) {
 				req.restaurant = restaurant;
 			} else {
-				req.session.restaurantid = null;
+				req.session.restaurantId = null;
 			}
 			next();
 		})
@@ -23,4 +23,4 @@ function deserializeUser(req, res, next) {
 	}
 }
 
-module.exports = deserializeUser;
+export default deserializeUser;

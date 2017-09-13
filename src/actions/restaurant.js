@@ -1,4 +1,5 @@
 import API from "util/api";
+import { push } from "react-router-redux";
 
 export function signup(restaurant) {
 	return (dispatch) => {
@@ -43,6 +44,7 @@ export function login(data) {
 					type: "AUTH_SUCCESS",
 					currentRestaurant: res,
 				})
+				dispatch(push("/useradmin"));
 			}
 			else {
 				console.log(res);

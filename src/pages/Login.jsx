@@ -27,16 +27,16 @@ class Login extends Component {
 		this.props.login(this.state);
 	}
 
-	componentDidMount() {
-		console.log("cwrp  :: this.props.currentRestaurant: ",this.props.currentRestaurant);
-		if (this.props.currentRestaurant) {
-			history.push('/UserAdmin');			
-		}
-	}
+	// componentDidMount() {
+	// 	console.log("cwrp  :: this.props.currentRestaurant: ",this.props.currentRestaurant);
+	// 	if (this.props.currentRestaurant) {
+	// 		history.push('/UserAdmin');			
+	// 	}
+	// }
 
 	render() {
 		return (
-			<Route render={({history}) => ( 
+			// <Route render={({history}) => ( 
 				<div className="rest-form">
 					<div className="rest-login-form">
 						<h1>Login</h1>
@@ -56,7 +56,7 @@ class Login extends Component {
 						</Segment>
 					</div>
 				</div>
-			)} />
+			// )} />
 		);
 	}
 }

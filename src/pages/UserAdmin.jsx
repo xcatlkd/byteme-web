@@ -63,6 +63,9 @@ class UserAdmin extends Component {
       </div>
     );
   }
+  else {
+    content = <div> Stuff </div>
+  }
   return content;
   }
 }
@@ -76,6 +79,7 @@ function mapStateToProps(state, props) {
     isLoading: state.restaurant.isLoading,
     posts: state.restaurant.posts,
     currentRestaurant: state.restaurant.currentRestaurant,
+    currentId: state.restaurant.currentId,
 	};
 
 }

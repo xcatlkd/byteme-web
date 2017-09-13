@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 	isLoading: false,
 	posts: [],
 	currentRestaurant: {},
-
+	currentId: null,
 
 };
 
@@ -22,6 +22,7 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				...state,
 				isLoggedIn: true,
 				currentRestaurant: action.currentRestaurant,
+				currentId: action.currentRestaurant.id,
 			}
 		case "LOGOUT":
 			return {

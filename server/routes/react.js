@@ -28,7 +28,7 @@ export default function(app) {
 		htmlHandler = (req, res) => {
 			devMW.waitUntilValid(() => {
 				const html = devMW.fileSystem.readFileSync(htmlFilePath);
-				renderHtmlWithReduxState(html);
+				renderHtmlWithReduxState(req, res, html);
 			});
 		}
 	}
@@ -36,7 +36,7 @@ export default function(app) {
 		htmlHandler = (req, res) => {
 			try {
 				const html = fs.readFileSync(htmlFilePath);
-				renderHtmlWithReduxState(html);
+				renderHtmlWithReduxState(req, res, html);
 			}
 			catch (error) {
 				console.error(error)
@@ -52,11 +52,11 @@ export default function(app) {
 function renderHtmlWithReduxState(req, res, html) {
 	const reduxState = {
 		restaurant: {
-			isLoggedIn: !!req.restaurant,
+			isLoggedIn: !!req.session.restaurantId,
 			currentRestaurant: req.restaurant,
 		}
 	};
-	console.log(html);
-	const reduxHtml = html.replace("undefined", JSON.stringify(reduxState));
+	console.log(req.user);
+	const reduxHtml = html.toString().replace("undefined", JSON.stringify(reduxState));
 	res.end(reduxHtml);
 }

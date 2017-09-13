@@ -1,6 +1,9 @@
 import './App.scss';
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route,  } from "react-router-dom";
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+
 
 // redux setup ##########################################
 import { Provider } from "react-redux";
@@ -8,7 +11,9 @@ import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
 
-const store = createStore(reducers, window._INITIAL_REDUX_STATE, applyMiddleware(reduxThunk));
+const history = createHistory();
+
+const store = createStore(reducers, window._INITIAL_REDUX_STATE, applyMiddleware(reduxThunk, routerMiddleware(history)));
 
 import Home from "pages/Home";
 import Navigation from "./components/Navigation";
@@ -46,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <div className="navbar">
             <Navigation/>
             <Switch>
@@ -58,7 +63,7 @@ class App extends React.Component {
               <Route exact path="/*" component={PageError}/>
             </Switch>
             </div>
-          </BrowserRouter>
+          </ConnectedRouter>
         </Provider>
       );
     }
