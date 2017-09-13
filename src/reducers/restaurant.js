@@ -1,9 +1,10 @@
 const INITIAL_STATE = {
 
 	isLoggedIn: false,
+	isLoading: false,
 	posts: [],
-	currentRestaurant: null,
-
+	currentRestaurant: {},
+	currentId: null,
 
 };
 
@@ -16,11 +17,12 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				currentRestaurant: null,
 			}
 		case "AUTH_SUCCESS":
-			console.log("reducer; AUTH_SUCCESS", state);
+			console.log("reducer; AUTH_SUCCESS: action.currentRestaurant: ", action.currentRestaurant);
 			return {
 				...state,
 				isLoggedIn: true,
 				currentRestaurant: action.currentRestaurant,
+				currentId: action.currentRestaurant.id,
 			}
 		case "LOGOUT":
 			return {
@@ -33,6 +35,23 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				...state,
 				userPosts: action.data,
 			};
+		case "LOADING":
+			return {
+				...state,
+				isLoading: true,
+			}
+		case "LOAD_SUCCESS":
+			return {
+				...state,
+				isLoading: false,
+				posts: action.posts,
+			}
+		case "LOAD_FAILURE":
+			return {
+				...state,
+				isLoading: false,
+				posts: [],
+			}
 		default:
 			return state;
 	}
