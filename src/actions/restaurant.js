@@ -69,10 +69,11 @@ export function postUpload(post) {
 		dispatch({
 			type: "UPLOAD_PENDING",
 		})
+		console.log("action/postUpload; post.restaurant.id: ", post.restaurant.id);
 		API.post("/upload", {
 			args: {
 				file: post.file,
-				username: post.restaurant,
+				username: post.restaurant.username,
 				title: post.title,
 				description: post.description,
 				price: post.price,

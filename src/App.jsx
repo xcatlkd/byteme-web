@@ -59,7 +59,7 @@ class App extends React.Component {
               <Route exact path="/Signup" component={SignUp} onEnter={this._requireAuth}/>
               <Route exact path="/Login" component={Login} onEnter={this._requireAuth}/>
               <Route exact path="/UserAdmin" component={UserAdmin} onEnter={this._requireAuth}/>
-              <Route exact path="/Upload" component={Upload} onEnter={this._requireAuth}/>
+              <Route exact path="/Upload" component={Upload} />
               <Route exact path="/*" component={PageError}/>
             </Switch>
             </div>
