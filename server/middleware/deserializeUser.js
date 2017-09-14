@@ -2,7 +2,7 @@ import Restaurant from '../models/restaurant';
 
 function deserializeUser(req, res, next) {
 	if (req.session.restaurantId) {
-		Restaurant.findById(req.session.restaurantId) 
+		return Restaurant.findById(req.session.restaurantId) 
 		.then(function(restaurant) {
 
 			

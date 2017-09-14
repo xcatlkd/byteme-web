@@ -1,6 +1,10 @@
 <img src="/src/assets/images/burgerlove.jpg" align="right" />
 
 # Byte Me
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03684c660a4a7e267d9ea15d99300e620d81cffb
 Byte Me is a web and mobile app for users to share and swipe for food. The web app is designed for restaurants to upload photos from their establishment which utilizes the swipe style on mobile. 
 
 # Getting Started
@@ -10,14 +14,10 @@ Byte Me is a web and mobile app for users to share and swipe for food. The web a
 # Deployment
 * https://desolate-anchorage-50545.herokuapp.com/
 
-# Deployment
-TBA Heroku deployment with address
-
-
 # Frameworks
 * Node and Express to handle the server
 * Postgres for database
-* React Native for build and interact with the UI
+* React Native for build and interact with the UI - the mobile repo is located, [here] (https://github.com/xcatlkd/byteme-mobile)
 
 ## Project Structure / File Tree
 
@@ -29,7 +29,7 @@ TBA Heroku deployment with address
 
 # Inspiration
 * [Tinder](http://www.tinder.com) - For swiping interface
-* [Foodspotting](http://www.foodspotting.com) - Finding food via geolocation
+* [Foodspotting](http://www.foodspotting.com) - Finding foods via geolocation
 
 # Acknowledgements
 Webpack template created by [Will O'Beirne](https://github.com/wbobeirne/)

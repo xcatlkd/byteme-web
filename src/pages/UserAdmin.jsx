@@ -26,7 +26,7 @@ class UserAdmin extends Component {
 	render() {
     const { posts, isLoading } = this.props;
     console.log("render useradmin: this.props: ",this.props);
-
+    const filePath = 'https://s3.us-east-2.amazonaws.com/bytemeimagestorage/';
     let content;
     if (isLoading) {
       content = <div className="loading">Loading</div>
@@ -45,10 +45,10 @@ class UserAdmin extends Component {
 	                    <Link key={photo.id}
 	                            to= {`/photo/${photo.id}`}>
 	                    <div className="food-name">
-	                        <p><b>Name:</b> {photo.name}</p>
+	                        <p><b>Title:</b> {photo.title}</p>
 	                    </div>
 	                      <div className="food-image">
-	                        <img src={`/src/uploads/${photo.id}.jpg`}/>
+	                        <img src={`${filePath}${photo.id}.jpg`}/>
 	                      </div>
 	                        <div className="food-desc">
 	                          <b>Description:</b> {photo.description}
@@ -65,6 +65,7 @@ class UserAdmin extends Component {
 			</div>
 	    );
 	  }
+
   else {
     content = <div> Stuff </div>
   }

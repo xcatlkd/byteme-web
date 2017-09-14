@@ -5,3 +5,4 @@ dist/
 uploads/
 files/
 photos/
+s3Config.json

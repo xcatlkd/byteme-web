@@ -53,7 +53,7 @@ Restaurant.prototype.upload = function(file, body) {
 	let image;
 	console.log("restaurant model; upload, file: ", file, "body: ", body)
 	return this.createPost({
-			id: file.filename,
+			id: file.key,
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
@@ -61,25 +61,7 @@ Restaurant.prototype.upload = function(file, body) {
 			description: body.description,
 			price: body.price,		  
 		})
-		.then(function(data) {
-			image = data;
-			const ext = path.extname(file.originalname);
-			const dest = "assets/photos/" + file.filename + ext;
-			return	fs.copy(file.path, dest)
-		})
-		.then(function() {
-			// If I'm an image
-			if (file.mimetype.includes("image/")) {
-				return Jimp.read(file.path)
-			.then(function(img) {
-					img.quality(80);
-					img.resize(Jimp.AUTO, 400);
-					// img.create(file.filename);
-					return	img.write("assets/files/" + file.filename + ".jpg")
-			});
-			}
-			})
-		.then(function() {
+		.then(function(image) {
 					return image;
 		});
 };
