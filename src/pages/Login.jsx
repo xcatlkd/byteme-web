@@ -12,6 +12,7 @@ class Login extends Component {
 			this.state = {
 				username: "",
 				password: "",
+				error: null,
 			};
 		}
 	}
@@ -23,6 +24,7 @@ class Login extends Component {
 
 	_handleSubmit = (event) => {
 		console.log(this.state);
+		// const { error } = this.props;
 		event.preventDefault();
 		this.props.login(this.state);
 	}
@@ -35,6 +37,14 @@ class Login extends Component {
 	// }
 
 	render() {
+		const { username, restaurantName  } = this.state;
+		const { error, loginError } = this.props;
+
+		let message;
+
+		if (loginError) {
+			message = <div className="LoginFail">{ error }</div>;
+		}
 		return (
 			// <Route render={({history}) => (
 			<div className="login-body">
@@ -51,6 +61,9 @@ class Login extends Component {
 									<div className="login-button">
 										<Button type="login" onSubmit={this._handleSubmit}>
 											LOGIN</Button>
+									</div>
+									<div className="login-message">
+										{ message }
 									</div>
 								</Form.Field>
 							</Form>
@@ -69,6 +82,8 @@ Login.propTypes = {
 
 function mapStateToProps(state, props) {
 	return {
+		error: state.restaurant.error,
+		loginError: state.restaurant.loginError,
 		currentRestaurant: state.restaurant.currentRestaurant,
 	};
 
