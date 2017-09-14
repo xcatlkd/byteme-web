@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 	posts: [],
 	currentRestaurant: {},
 	currentId: null,
+	error: null,
 
 };
 
@@ -15,6 +16,7 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				...state,
 				isLoggedIn: false,
 				currentRestaurant: null,
+				error: null,
 			}
 		case "AUTH_SUCCESS":
 			console.log("reducer; AUTH_SUCCESS: action.currentRestaurant: ", action.currentRestaurant);
@@ -23,6 +25,7 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				isLoggedIn: true,
 				currentRestaurant: action.currentRestaurant,
 				currentId: action.currentRestaurant.id,
+				error: null, 
 			}
 		case "LOGOUT":
 			return {
@@ -34,23 +37,36 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 			return {
 				...state,
 				userPosts: action.data,
+				error: null,
 			};
 		case "LOADING":
 			return {
 				...state,
 				isLoading: true,
+				error: null,
 			}
 		case "LOAD_SUCCESS":
 			return {
 				...state,
 				isLoading: false,
 				posts: action.posts,
+				error: null,
 			}
 		case "LOAD_FAILURE":
 			return {
 				...state,
 				isLoading: false,
 				posts: [],
+			}
+		case "UPLOAD_SUCCESS":
+			return {
+				...state,
+				error: null,
+			}
+		case "UPLOAD_FAILURE":
+			return {
+				...state,
+				error: action.error,
 			}
 		default:
 			return state;
