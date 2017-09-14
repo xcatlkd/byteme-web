@@ -48,7 +48,7 @@ class UserAdmin extends Component {
 	                        <p><b>Title:</b> {photo.title}</p>
 	                    </div>
 	                      <div className="food-image">
-	                        <img src={`${filePath}${photo.id}.jpg`}/>
+	                        <img src={`${filePath}${photo.id}`}/>
 	                      </div>
 	                        <div className="food-desc">
 	                          <b>Description:</b> {photo.description}
