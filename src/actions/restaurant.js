@@ -20,10 +20,10 @@ export function signup(restaurant) {
 				})
 				dispatch(push("/useradmin"));
 			}
-			else if (res.error) {
+			else if (res) {
 				dispatch({
 					type: "AUTH_FAILURE",
-					error: res.error,
+					error: res,
 				})
 			}
 		}).catch((error) => {
@@ -50,8 +50,12 @@ export function login(data) {
 				})
 				dispatch(push("/useradmin"));
 			}
-			else {
+			else if (res.error) {
 				console.log(res);
+				dispatch({
+					type: "AUTH_FAILURE",
+					error: res.error,
+				})
 			}
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
@@ -106,7 +110,7 @@ export function postUpload(post) {
 
 export function getAll(restaurant) {
 	return (dispatch) => {
-		dispatch({ 
+		dispatch({
 			type: "LOADING",
 		})
 		API.get("/posts", {

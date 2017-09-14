@@ -22,12 +22,23 @@ class Login extends Component {
 	}
 
 	_handleSubmit = (event) => {
+		console.log(this.state);
 		event.preventDefault();
 		this.props.login(this.state);
 	}
 
 
 	render() {
+		const { username, restaurantName  } = this.state;
+		const { error } = this.props;
+		console.log(this.props, "AAAAAAHHHHHH");
+
+		let message;
+
+		if (error) {
+			message = error;
+		}
+		console.log(error, "STUFF");
 		return (
 			// <Route render={({history}) => (
 			<div className="login-body">
@@ -44,6 +55,9 @@ class Login extends Component {
 									<div className="login-button">
 										<Button type="login" onSubmit={this._handleSubmit}>
 											LOGIN</Button>
+									</div>
+									<div className="login-message">
+										{ message }
 									</div>
 								</Form.Field>
 							</Form>
@@ -62,6 +76,7 @@ Login.propTypes = {
 
 function mapStateToProps(state, props) {
 	return {
+		error: state.restaurant.error,
 		currentRestaurant: state.restaurant.currentRestaurant,
 	};
 

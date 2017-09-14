@@ -12,11 +12,17 @@ h1 {
 }
 
 .rest-signup-form {
-
 	// padding: 18px 0 18px 0;
 	width: 425px;
 }
 
 .submit-button {
 	padding-top: 13px;
+}
+
+.sign-up-error {
+	font-size: 25px;
+	color: #FF9A00;
+	font-weight: bold;
+	text-align: center;
 }
