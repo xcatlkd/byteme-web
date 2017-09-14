@@ -38,7 +38,7 @@ class App extends React.Component {
       console.log("app.js; _requireAuth: true")
       replace({
         pathname: "/useradmin",
-      })
+      });
     }
     else if (!isLoggedIn) {
       console.log("app.js; _requireAuth: false")
