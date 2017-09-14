@@ -22,17 +22,10 @@ class Login extends Component {
 	}
 
 	_handleSubmit = (event) => {
-		console.log(this.state);
 		event.preventDefault();
 		this.props.login(this.state);
 	}
 
-	// componentDidMount() {
-	// 	console.log("cwrp  :: this.props.currentRestaurant: ",this.props.currentRestaurant);
-	// 	if (this.props.currentRestaurant) {
-	// 		history.push('/UserAdmin');
-	// 	}
-	// }
 
 	render() {
 		return (

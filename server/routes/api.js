@@ -118,7 +118,6 @@ router.post("/upload", upload.single("file"), (req, res) => {
 		Restaurant.findOne({ where: {
 			id: req.body.restaurantId,
 		}}).then((restaurant) => {
-			console.log("api/upload; restaurant: ", restaurant)
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
@@ -140,7 +139,6 @@ router.post("/upload", upload.single("file"), (req, res) => {
 })
 
 router.post("/logout", (req, res) => {
-	console.log("router  logout; req.session: ",req.session);
 	req.session.restaurantId = null,
 	res.send("User logged out.");
 })

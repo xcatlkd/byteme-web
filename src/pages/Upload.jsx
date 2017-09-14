@@ -34,7 +34,6 @@ class Upload extends Component {
 	}
 
 	render() {
-		console.log("upload render; this.props.currentId: ", this.props.currentId)
 		return (
 			<div className="upload-container">
 				<h1>Upload Your Photos Here</h1>

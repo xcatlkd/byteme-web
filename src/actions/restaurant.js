@@ -21,7 +21,6 @@ export function signup(restaurant) {
 				dispatch(push("/useradmin"));
 			}
 			else if (res.error) {
-				console.log(res.error);
 				dispatch({
 					type: "AUTH_FAILURE",
 					error: res.error,
@@ -44,7 +43,6 @@ export function login(data) {
 				password: data.password,
 			},
 		}).then((res) => {
-			console.log("action  login; res: ", res);
 			if (res.id) {
 				dispatch({
 					type: "AUTH_SUCCESS",

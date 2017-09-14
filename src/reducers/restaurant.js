@@ -19,7 +19,6 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				error: null,
 			}
 		case "AUTH_SUCCESS":
-			console.log("reducer; AUTH_SUCCESS: action.currentRestaurant: ", action.currentRestaurant);
 			return {
 				...state,
 				isLoggedIn: true,
