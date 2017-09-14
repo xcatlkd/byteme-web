@@ -10,6 +10,9 @@ const upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'bytemeimagestorage',
+        // filename: function (req, file, cb) {
+        // 	cb()
+        // }
         metadata: function (req, file, cb) {
             cb(null, { fieldName: "x-amz-meta-" + file.filename });
         },
@@ -64,7 +67,6 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/posts", (req, res) => {
-	console.log("api/posts req.query: ", req.query);
 	if (req.query.restaurantId) {
 		Post.findAll({
 			where: { restaurantId: req.query.restaurantId, }
@@ -118,7 +120,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
 			res.send("error", error);
 		});
 		}).then((success) => {
-			console.log("Success?");
+			console.log("Success?", success);
 		}).catch((error) => {
 			console.error(error);
 		});
