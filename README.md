@@ -4,12 +4,12 @@
 Byte Me is a web and mobile app for restaurants to connect to mobile users by posting their food pics. Mobile users will discover food pics in their geolocation by the popular swipe style.  
 
 # Getting Started
+* Download or clone the file
 * npm install
 * npm run
 
 # Deployment
 * https://desolate-anchorage-50545.herokuapp.com/
-
 
 # Frameworks
 * Node and Express to handle the server
