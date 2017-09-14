@@ -1,7 +1,7 @@
 <img src="/src/assets/images/burgerlove.jpg" align="right" />
 
 # Byte Me
-Byte Me is a web and mobile app for users to share and swipe for food. The web app is designed for restaurants to upload photos from their establishment which utilizes the swipe feature on mobile. 
+Byte Me is a web and mobile app for users to share and swipe for food. The web app is designed for restaurants to upload photos from their establishment which utilizes the swipe style on mobile. 
 
 # Getting Started
 * npm install
