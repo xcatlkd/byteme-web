@@ -26,7 +26,7 @@ class Home extends Component {
 				 <Link to="/signup"> sign up</Link> for an account to put your business out there!
 				</div>)
 		}
-		
+
 		return (
 			<div className="home-body">
 			<Grid textAlign='center'>

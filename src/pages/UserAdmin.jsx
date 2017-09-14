@@ -36,7 +36,7 @@ class UserAdmin extends Component {
       content = (
 			<div className="UA-Body">
 	      <div className="UserAdmin">
-	        <h1>Welcome, let's look at your Food Photos!</h1>
+	        <h1 className="User-Header">Welcome, let's look at your Food Photos!</h1>
 	          <div className="Image-Gallery">
 	            {posts.map((photo, index) => {
 	              return (

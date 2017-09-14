@@ -1,13 +1,18 @@
 <img src="/src/assets/images/burgerlove.jpg" align="right" />
 
 # Byte Me
-A mobile food app for Users to discover food within their location by implementing the popular swipe style UI.
+Byte Me is a web and mobile app for users to share and swipe for food. The web app is designed for restaurants to upload photos from their establishment which utilizes the swipe feature on mobile. 
 
 # Getting Started
-Run `npm start`. See deployment for notes
+* npm install
+* npm start
+
+# Deployment
+* https://desolate-anchorage-50545.herokuapp.com/
 
 # Deployment
 TBA Heroku deployment with address
+
 
 # Frameworks
 * Node and Express to handle the server
