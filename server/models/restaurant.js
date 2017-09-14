@@ -51,7 +51,6 @@ Restaurant.hasMany(Phone, { through: userPhone }); */
 // model extensions
 Restaurant.prototype.upload = function(file, body) {
 	let image;
-	console.log("restaurant model; upload, file: ", file, "body: ", body)
 	return this.createPost({
 			id: file.key,
 			size: file.size,
@@ -83,7 +82,6 @@ function hashUserPassword(restaurant) {
 };
 
 Restaurant.prototype.comparePassword = function(password) {
-	console.log("model; compare password");
 	return bcrypt.compare(password, this.get("password"));
 };
 

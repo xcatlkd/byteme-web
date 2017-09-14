@@ -5,7 +5,10 @@ import multerS3 from "multer-s3";
 import AWS from "aws-sdk";
 
 // const S3_BUCKET = process.env.S3_BUCKET;
+
+// coment this line out before pushing to heroku
 AWS.config.loadFromPath("./s3Config.json");
+
 const s3 = new AWS.S3();
 const upload = multer({
     storage: multerS3({
@@ -20,7 +23,6 @@ const upload = multer({
     })
   })
 // import models here ##################################
-//import Post from "../models/post";
 import Restaurant from "../models/restaurant";
 import Post from "../models/post";
 
@@ -31,9 +33,22 @@ router.use(BodyParser.json());
 // define routes here ###################################
 
 router.post("/signup", (req, res) => {
-	Restaurant.signup(req)
+	Restaurant.findOne({ where: {
+		username: req.body.username,
+	}})
 	.then((restaurant) => {
-		res.json(restaurant.dataValues);
+		if (restaurant) {
+			res.json({error: "Username is already taken. Please choose another"})
+		}
+		else {
+			Restaurant.signup(req)
+			.then((restaurant) => {
+				req.session.restaurantId = restaurant.get("id");
+				res.json(restaurant.dataValues);
+			});
+		}
+	}).catch((error) => {
+		console.error("Something went wrong", error);
 	});
 });
 
@@ -43,7 +58,6 @@ router.post("/login", (req, res) => {
 	}})
 	.then((restaurant) => {
 		if (restaurant) {
-			console.log("API/login: restaurant: ", restaurant);
 			restaurant.comparePassword(req.body.password)
 			.then((valid) => {
 				if (valid) {
@@ -97,7 +111,6 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", upload.single("file"), (req, res) => {
-	console.log("api upload/  req.body: ", req.body);
 	if (!req.file) {
 		res.json({error: "Invalid file type."});
 	}
@@ -105,13 +118,13 @@ router.post("/upload", upload.single("file"), (req, res) => {
 		Restaurant.findOne({ where: {
 			id: req.body.restaurantId,
 		}}).then((restaurant) => {
-			console.log("api/upload; restaurant: ", restaurant)
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
-				res.json(image);
+				res.redirect("/useradmin");
 			}
 			else {
+				res.send({error: "Upload failed."});
 			}
 		}).catch((error) => {
 			console.error(error);
@@ -125,8 +138,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
 	}
 })
 
-router.get("/logout", (req, res) => {
-	console.log(req.session);
+router.post("/logout", (req, res) => {
 	req.session.restaurantId = null,
 	res.send("User logged out.");
 })

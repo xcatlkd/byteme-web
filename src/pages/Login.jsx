@@ -12,7 +12,6 @@ class Login extends Component {
 			this.state = {
 				username: "",
 				password: "",
-				error: null,
 			};
 		}
 	}
@@ -24,27 +23,22 @@ class Login extends Component {
 
 	_handleSubmit = (event) => {
 		console.log(this.state);
-		// const { error } = this.props;
 		event.preventDefault();
 		this.props.login(this.state);
 	}
 
-	// componentDidMount() {
-	// 	console.log("cwrp  :: this.props.currentRestaurant: ",this.props.currentRestaurant);
-	// 	if (this.props.currentRestaurant) {
-	// 		history.push('/UserAdmin');
-	// 	}
-	// }
 
 	render() {
 		const { username, restaurantName  } = this.state;
-		const { error, loginError } = this.props;
+		const { error } = this.props;
+		console.log(this.props, "AAAAAAHHHHHH");
 
 		let message;
 
-		if (loginError) {
-			message = <div className="LoginFail">{ error }</div>;
+		if (error) {
+			message = error;
 		}
+		console.log(error, "STUFF");
 		return (
 			// <Route render={({history}) => (
 			<div className="login-body">
@@ -83,7 +77,6 @@ Login.propTypes = {
 function mapStateToProps(state, props) {
 	return {
 		error: state.restaurant.error,
-		loginError: state.restaurant.loginError,
 		currentRestaurant: state.restaurant.currentRestaurant,
 	};
 

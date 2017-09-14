@@ -13,14 +13,18 @@ export function signup(restaurant) {
 				restaurantName: restaurant.restaurantName,
 			},
 		}).then((res) => {
-			if (res) {
+			if (res.id) {
 				dispatch({
 					type: "AUTH_SUCCESS",
-					currentRestaurant: restaurant.username,
+					currentRestaurant: res,
 				})
+				dispatch(push("/useradmin"));
 			}
-			else {
-				console.log(res.error);
+			else if (res) {
+				dispatch({
+					type: "AUTH_FAILURE",
+					error: res,
+				})
 			}
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
@@ -39,15 +43,19 @@ export function login(data) {
 				password: data.password,
 			},
 		}).then((res) => {
-			if (res) {
+			if (res.id) {
 				dispatch({
 					type: "AUTH_SUCCESS",
 					currentRestaurant: res,
 				})
 				dispatch(push("/useradmin"));
 			}
-			else {
+			else if (res.error) {
 				console.log(res);
+				dispatch({
+					type: "AUTH_FAILURE",
+					error: res.error,
+				})
 			}
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
@@ -60,7 +68,7 @@ export function logout() {
 		dispatch({
 			type: "LOGOUT",
 		})
-		API.get("/logout");
+		API.post("/logout");
 	}
 }
 
@@ -69,7 +77,6 @@ export function postUpload(post) {
 		dispatch({
 			type: "UPLOAD_PENDING",
 		})
-		console.log("action/postUpload; post.restaurant.id: ", post.restaurant.id);
 		API.post("/upload", {
 			args: {
 				file: post.file,
@@ -79,11 +86,11 @@ export function postUpload(post) {
 				price: post.price,
 			},
 		}).then((res) => {
-			if (res.data) {
+			if (res) {
 				dispatch({
 					type: "UPLOAD_SUCCESS",
-					data: res.data,
 				})
+				dispatch(push("/useradmin"));
 			}
 			else {
 				dispatch({
@@ -102,18 +109,15 @@ export function postUpload(post) {
 }
 
 export function getAll(restaurant) {
-	console.log("action/restaurants  getAll, restaurant: ", restaurant);
 	return (dispatch) => {
-		dispatch({ 
+		dispatch({
 			type: "LOADING",
 		})
-		console.log("restaurant.id", restaurant.id);
 		API.get("/posts", {
 			args: {
 				restaurantId: restaurant.id,
 			}
 		}).then((res) => {
-			console.log("actions/restaurant; getAll, res: ", res);
 			if (res) {
 				dispatch({
 					type: "LOAD_SUCCESS",
@@ -129,7 +133,7 @@ export function getAll(restaurant) {
 		}).catch((error) => {
 			dispatch({
 				type: "LOAD_FAILURE",
-				error: res.error,
+				error: error,
 			})
 		});
 	}
