@@ -14,7 +14,7 @@ class UserAdmin extends Component {
       posts: [],
     }
   }
-	
+
   componentDidMount() {
     this.props.getAll(this.props.currentRestaurant);
     this.setState({
@@ -35,7 +35,7 @@ class UserAdmin extends Component {
 
       content = (
       <div className="UserAdmin">
-        <h1>Welcome to Your Domain!</h1>
+        <h1>Welcome, let's look at your Food Photos!</h1>
           <div className="Image-Gallery">
             {posts.map((photo, index) => {
               return (
