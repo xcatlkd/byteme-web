@@ -7,7 +7,7 @@ import AWS from "aws-sdk";
 // const S3_BUCKET = process.env.S3_BUCKET;
 
 // coment this line out before pushing to heroku
-AWS.config.loadFromPath("./s3Config.json");
+// AWS.config.loadFromPath("./s3Config.json");
 
 const s3 = new AWS.S3();
 const upload = multer({
