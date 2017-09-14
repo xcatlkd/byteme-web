@@ -14,7 +14,7 @@ Byte Me is a web and mobile app for users to share and swipe for food. The web a
 # Frameworks
 * Node and Express to handle the server
 * Postgres for database
-* React Native for build and interact with the UI - the mobile repo is located, [here] (https://github.com/xcatlkd/byteme-mobile)
+* React Native for build and interact with the UI - the mobile repo is located, [here](https://github.com/xcatlkd/byteme-mobile)
 
 ## Project Structure / File Tree
 
