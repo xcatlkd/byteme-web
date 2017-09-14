@@ -13,15 +13,19 @@ export function signup(restaurant) {
 				restaurantName: restaurant.restaurantName,
 			},
 		}).then((res) => {
-			if (res) {
+			if (res.id) {
 				dispatch({
 					type: "AUTH_SUCCESS",
 					currentRestaurant: res,
 				})
 				dispatch(push("/useradmin"));
 			}
-			else {
+			else if (res.error) {
 				console.log(res.error);
+				dispatch({
+					type: "AUTH_FAILURE",
+					error: res.error,
+				})
 			}
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
@@ -80,7 +84,6 @@ export function postUpload(post) {
 				price: post.price,
 			},
 		}).then((res) => {
-			console.log("action  postUpload;  res: ", res);
 			if (res) {
 				dispatch({
 					type: "UPLOAD_SUCCESS",
@@ -104,18 +107,15 @@ export function postUpload(post) {
 }
 
 export function getAll(restaurant) {
-	console.log("action/restaurants  getAll, restaurant: ", restaurant);
 	return (dispatch) => {
 		dispatch({ 
 			type: "LOADING",
 		})
-		console.log("restaurant.id", restaurant.id);
 		API.get("/posts", {
 			args: {
 				restaurantId: restaurant.id,
 			}
 		}).then((res) => {
-			console.log("actions/restaurant; getAll, res: ", res);
 			if (res) {
 				dispatch({
 					type: "LOAD_SUCCESS",

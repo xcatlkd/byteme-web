@@ -33,10 +33,22 @@ router.use(BodyParser.json());
 // define routes here ###################################
 
 router.post("/signup", (req, res) => {
-
-	Restaurant.signup(req)
+	Restaurant.findOne({ where: {
+		username: req.body.username,
+	}})
 	.then((restaurant) => {
-		res.json(restaurant.dataValues);
+		if (restaurant) {
+			res.json({error: "Username is already taken. Please choose another"})
+		}
+		else {
+			Restaurant.signup(req)
+			.then((restaurant) => {
+				req.session.restaurantId = restaurant.get("id");
+				res.json(restaurant.dataValues);
+			});
+		}
+	}).catch((error) => {
+		console.error("Something went wrong", error);
 	});
 });
 

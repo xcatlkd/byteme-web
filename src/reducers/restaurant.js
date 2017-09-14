@@ -27,6 +27,11 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				currentId: action.currentRestaurant.id,
 				error: null, 
 			}
+		case "AUTH_FAILURE":
+			return {
+				...state,
+				error: action.error,
+			}
 		case "LOGOUT":
 			return {
 				...state,
