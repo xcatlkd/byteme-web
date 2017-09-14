@@ -33,9 +33,22 @@ router.use(BodyParser.json());
 // define routes here ###################################
 
 router.post("/signup", (req, res) => {
-	Restaurant.signup(req)
+	Restaurant.findOne({ where: {
+		username: req.body.username,
+	}})
 	.then((restaurant) => {
-		res.json(restaurant.dataValues);
+		if (restaurant) {
+			res.json({error: "Username is already taken. Please choose another"})
+		}
+		else {
+			Restaurant.signup(req)
+			.then((restaurant) => {
+				req.session.restaurantId = restaurant.get("id");
+				res.json(restaurant.dataValues);
+			});
+		}
+	}).catch((error) => {
+		console.error("Something went wrong", error);
 	});
 });
 
@@ -45,7 +58,6 @@ router.post("/login", (req, res) => {
 	}})
 	.then((restaurant) => {
 		if (restaurant) {
-			console.log("API/login: restaurant: ", restaurant);
 			restaurant.comparePassword(req.body.password)
 			.then((valid) => {
 				if (valid) {
@@ -99,7 +111,6 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", upload.single("file"), (req, res) => {
-	console.log("api upload/  req.body: ", req.body);
 	if (!req.file) {
 		res.json({error: "Invalid file type."});
 	}
@@ -107,13 +118,13 @@ router.post("/upload", upload.single("file"), (req, res) => {
 		Restaurant.findOne({ where: {
 			id: req.body.restaurantId,
 		}}).then((restaurant) => {
-			console.log("api/upload; restaurant: ", restaurant)
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
-				res.json({data: "Success"});
+				res.redirect("/useradmin");
 			}
 			else {
+				res.send({error: "Upload failed."});
 			}
 		}).catch((error) => {
 			console.error(error);
@@ -128,7 +139,6 @@ router.post("/upload", upload.single("file"), (req, res) => {
 })
 
 router.post("/logout", (req, res) => {
-	console.log("router  logout; req.session: ",req.session);
 	req.session.restaurantId = null,
 	res.send("User logged out.");
 })

@@ -20,7 +20,6 @@ class Navigation extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		let links;
 		if (this.props.isLoggedIn) {
 			links = [{

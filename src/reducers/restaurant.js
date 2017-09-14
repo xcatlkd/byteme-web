@@ -19,13 +19,17 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				error: null,
 			}
 		case "AUTH_SUCCESS":
-			console.log("reducer; AUTH_SUCCESS: action.currentRestaurant: ", action.currentRestaurant);
 			return {
 				...state,
 				isLoggedIn: true,
 				currentRestaurant: action.currentRestaurant,
 				currentId: action.currentRestaurant.id,
 				error: null, 
+			}
+		case "AUTH_FAILURE":
+			return {
+				...state,
+				error: action.error,
 			}
 		case "LOGOUT":
 			return {

@@ -20,12 +20,10 @@ class UserAdmin extends Component {
     this.setState({
       posts: this.props.posts,
     })
-    console.log("compomnentDidMount; this.state: ", this.state, "this.props: ", this.props);
   }
 
 	render() {
     const { posts, isLoading } = this.props;
-    console.log("render useradmin: this.props: ",this.props);
     const filePath = 'https://s3.us-east-2.amazonaws.com/bytemeimagestorage/';
     let content;
     if (isLoading) {
