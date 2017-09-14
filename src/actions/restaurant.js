@@ -16,8 +16,9 @@ export function signup(restaurant) {
 			if (res) {
 				dispatch({
 					type: "AUTH_SUCCESS",
-					currentRestaurant: restaurant.username,
+					currentRestaurant: res,
 				})
+				dispatch(push("/useradmin"));
 			}
 			else {
 				console.log(res.error);
@@ -39,7 +40,8 @@ export function login(data) {
 				password: data.password,
 			},
 		}).then((res) => {
-			if (res) {
+			console.log("action  login; res: ", res);
+			if (res.id) {
 				dispatch({
 					type: "AUTH_SUCCESS",
 					currentRestaurant: res,
@@ -60,7 +62,7 @@ export function logout() {
 		dispatch({
 			type: "LOGOUT",
 		})
-		API.get("/logout");
+		API.post("/logout");
 	}
 }
 
@@ -69,7 +71,6 @@ export function postUpload(post) {
 		dispatch({
 			type: "UPLOAD_PENDING",
 		})
-		console.log("action/postUpload; post.restaurant.id: ", post.restaurant.id);
 		API.post("/upload", {
 			args: {
 				file: post.file,
@@ -79,11 +80,13 @@ export function postUpload(post) {
 				price: post.price,
 			},
 		}).then((res) => {
+			console.log("action  postUpload;  res: ", res);
 			if (res.data) {
 				dispatch({
 					type: "UPLOAD_SUCCESS",
 					data: res.data,
 				})
+				dispatch(push("/useradmin"));
 			}
 			else {
 				dispatch({
@@ -129,7 +132,7 @@ export function getAll(restaurant) {
 		}).catch((error) => {
 			dispatch({
 				type: "LOAD_FAILURE",
-				error: res.error,
+				error: error,
 			})
 		});
 	}

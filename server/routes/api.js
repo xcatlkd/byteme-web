@@ -5,7 +5,10 @@ import multerS3 from "multer-s3";
 import AWS from "aws-sdk";
 
 // const S3_BUCKET = process.env.S3_BUCKET;
+
+// coment this line out before pushing to heroku
 AWS.config.loadFromPath("./s3Config.json");
+
 const s3 = new AWS.S3();
 const upload = multer({
     storage: multerS3({
@@ -20,7 +23,6 @@ const upload = multer({
     })
   })
 // import models here ##################################
-//import Post from "../models/post";
 import Restaurant from "../models/restaurant";
 import Post from "../models/post";
 
@@ -109,7 +111,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
-				res.json(image);
+				res.json({data: "Success"});
 			}
 			else {
 			}
@@ -125,8 +127,8 @@ router.post("/upload", upload.single("file"), (req, res) => {
 	}
 })
 
-router.get("/logout", (req, res) => {
-	console.log(req.session);
+router.post("/logout", (req, res) => {
+	console.log("router  logout; req.session: ",req.session);
 	req.session.restaurantId = null,
 	res.send("User logged out.");
 })
