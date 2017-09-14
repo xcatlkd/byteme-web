@@ -4,7 +4,6 @@ import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Menu } from "semantic-ui-react";
 import PropTypes from "prop-types";
-import img from "assets/images/restauranticon.png";
 import { logout } from "actions/restaurant";
 
 class Navigation extends Component {
@@ -12,11 +11,10 @@ class Navigation extends Component {
 		super(props);
 		this.state = {
 			isLoggedIn: this.props.isLoggedIn,
-		}
+		};
 	}
 	_handleLogout = (event) => {
-		console.log("handleLogout; event.target.className: ", event.target.className);
-		if (event.target.className === "logout") {
+		if (event.target.parentNode.className === "logout") {
 			this.props.logout();
 		}
 	}
@@ -53,8 +51,8 @@ class Navigation extends Component {
 				<Menu>
 					<Menu.Menu position = "left">
 						<Link to="/" className="Link-Home">
-							<div className="logo">
-								<img src="../assets/images/restauranticon.png"/>
+							<img src="https://i.imgur.com/NL5irJA.png" className="icon"/>
+								<div className="logo">
 									Byte Me
 							</div>
 						</Link>
@@ -70,7 +68,7 @@ class Navigation extends Component {
 										// activeClass="is-active"
 										exact
 										onClick={this._handleLogout}
-									> <Button>{link.text}</Button>
+									> <Button color="green">{link.text}</Button>
 									</NavLink>
 								);
 							})}

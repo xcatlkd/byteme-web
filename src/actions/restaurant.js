@@ -1,11 +1,11 @@
 import API from "util/api";
+import { push } from "react-router-redux";
 
 export function signup(restaurant) {
 	return (dispatch) => {
 		dispatch({
 			type: "SIGNUP_PENDING",
 		})
-		console.log("action/restaurant; signup, before API call:");
 		API.post("/signup", {
 			args: {
 				username: restaurant.username,
@@ -14,9 +14,9 @@ export function signup(restaurant) {
 			},
 		}).then((res) => {
 			if (res) {
-				console.log("actions/restaurant; res: ", res);
 				dispatch({
 					type: "AUTH_SUCCESS",
+					currentRestaurant: restaurant.username,
 				})
 			}
 			else {
@@ -33,7 +33,6 @@ export function login(data) {
 		dispatch({
 			type: "AUTH_PENDING",
 		})
-		console.log(data);
 		API.post("/login", {
 			args: {
 				username: data.username,
@@ -43,10 +42,12 @@ export function login(data) {
 			if (res) {
 				dispatch({
 					type: "AUTH_SUCCESS",
+					currentRestaurant: res,
 				})
+				dispatch(push("/useradmin"));
 			}
 			else {
-				console.log(res.error);
+				console.log(res);
 			}
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
@@ -55,11 +56,11 @@ export function login(data) {
 }
 
 export function logout() {
-	console.log(state);
 	return (dispatch) => {
 		dispatch({
 			type: "LOGOUT",
 		})
+		API.get("/logout");
 	}
 }
 
@@ -68,18 +69,68 @@ export function postUpload(post) {
 		dispatch({
 			type: "UPLOAD_PENDING",
 		})
+		console.log("action/postUpload; post.restaurant.id: ", post.restaurant.id);
 		API.post("/upload", {
 			args: {
 				file: post.file,
+				username: post.restaurant.username,
+				title: post.title,
+				description: post.description,
+				price: post.price,
+			},
+		}).then((res) => {
+			if (res.data) {
+				dispatch({
+					type: "UPLOAD_SUCCESS",
+					data: res.data,
+				})
 			}
+			else {
+				dispatch({
+					type: "UPLOAD_FAILURE",
+					error: res.error,
+				})
+			}
+		}).catch((error) => {
+			dispatch({
+				type: "UPLOAD_FAILURE",
+				error: "Something went wrong",
+			})
 		})
 
 	}
 }
 
-export function getAll() {
+export function getAll(restaurant) {
+	console.log("action/restaurants  getAll, restaurant: ", restaurant);
 	return (dispatch) => {
-		
-
+		dispatch({ 
+			type: "LOADING",
+		})
+		console.log("restaurant.id", restaurant.id);
+		API.get("/posts", {
+			args: {
+				restaurantId: restaurant.id,
+			}
+		}).then((res) => {
+			console.log("actions/restaurant; getAll, res: ", res);
+			if (res) {
+				dispatch({
+					type: "LOAD_SUCCESS",
+					posts: res,
+				})
+			}
+			else {
+				dispatch({
+					type: "LOAD_FAILURE",
+					error: res.error,
+				})
+			}
+		}).catch((error) => {
+			dispatch({
+				type: "LOAD_FAILURE",
+				error: res.error,
+			})
+		});
 	}
 }

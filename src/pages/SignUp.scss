@@ -2,14 +2,19 @@ h1 {
 	text-align: center;
 }
 
-.rest-form {
-
+.signup-body {
+	margin: 0 auto;
+	background-image: url('https://i.imgur.com/n9iGItN.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
 }
 
 .rest-signup-form {
-	margin: 0 auto;
+
 	// padding: 18px 0 18px 0;
-	width: 300px;
+	width: 425px;
 }
 
 .submit-button {

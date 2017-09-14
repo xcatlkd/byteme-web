@@ -5,42 +5,42 @@
 		"name": "steak",
 		"description": "A delicious steak",
 		"price": "$1 million",
-		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
+		"imageURL": "http://www.omahasteaks.com/gifs/990x594/fi004.jpg"
 	}, {
 		"id": "2",
 		"restaurantId": "1",
 		"name": "pasta",
 		"description": "A delicious pasta",
 		"price": "$17",
-		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw769b4a78/images/TW2R48300.png?sw=101&sh=101&sm=fit"
+		"imageURL": "http://i.ndtvimg.com/i/2015-07/spaghetti_625x350_61436865755.jpg"
 	}, {
 		"id": "3",
 		"restaurantId": "2",
 		"name": "fish",
 		"description": "A delicious fish",
 		"price": "$45",
-		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
+		"imageURL": "https://barjack75.files.wordpress.com/2010/07/seafood-4367h.jpg"
 	}, {
 		"id": "4",
 		"restaurantId": "7",
 		"name": "carrot",
 		"description": "A really delicious carrot",
 		"price": "$50",
-		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
+		"imageURL": "https://greenblender.com/smoothies/wp-content/uploads/2016/04/31-Smoothies-With-Carrots-by-GreenBlender-carrots.jpg"
 	}, {
 		"id": "5",
 		"restaurantId": "2",
 		"name": "chicken",
 		"description": "A delicious chicken",
 		"price": "$5.00",
-		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
+		"imageURL": "http://newyork.seriouseats.com/images/20120418-nomad-24.jpg"
 	}, {
 		"id": "6",
 		"restaurantId": "3",
 		"name": "onion",
 		"description": "A delicious onion",
 		"price": "$1.00",
-		"imageURL": "http://demandware.edgesuite.net/sits_pod42/dw/image/v2/BBDM_PRD/on/demandware.static/-/Sites-timex-master-catalog/default/dw26239540/images/TW2R49500.png?sw=101&sh=101&sm=fit"
+		"imageURL": "https://foleysproduce.com/wp-content/uploads/2016/07/Yellw-Onions.jpg"
 	}
 
 ]
