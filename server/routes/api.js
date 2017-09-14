@@ -4,16 +4,13 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import AWS from "aws-sdk";
 
-const S3_BUCKET = process.env.S3_BUCKET;
-// AWS.config.loadFromPath("./s3Config.json");
+// const S3_BUCKET = process.env.S3_BUCKET;
+AWS.config.loadFromPath("./s3Config.json");
 const s3 = new AWS.S3();
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: 'bytemeimagestorage',
-        // filename: function (req, file, cb) {
-        // 	cb()
-        // }
+        bucket: process.env.S3_BUCKET || 'bytemeimagestorage',
         metadata: function (req, file, cb) {
             cb(null, { fieldName: "x-amz-meta-" + file.filename });
         },
