@@ -34,35 +34,37 @@ class UserAdmin extends Component {
     else if (posts) {
 
       content = (
-      <div className="UserAdmin">
-        <h1>Welcome, let's look at your Food Photos!</h1>
-          <div className="Image-Gallery">
-            {posts.map((photo, index) => {
-              return (
-                [
-                  <div className="Images-Container">
-                    <Link key={photo.id}
-                            to= {`/photo/${photo.id}`}>
-                    <div className="food-name">
-                        <p><b>Name:</b> {photo.name}</p>
-                    </div>
-                      <div className="food-image">
-                        <img src={`/src/uploads/${photo.id}.jpg`}/>
-                      </div>
-                        <div className="food-desc">
-                          <b>Description:</b> {photo.description}
-                        </div>
-                          <div className="food-price">
-                            <b>Price:</b> {photo.price}
-                          </div>
-                      </Link>
-                    </div>
-            ]);
-          })}
-        </div>
-      </div>
-    );
-  }
+			<div className="UA-Body">
+	      <div className="UserAdmin">
+	        <h1>Welcome, let's look at your Food Photos!</h1>
+	          <div className="Image-Gallery">
+	            {posts.map((photo, index) => {
+	              return (
+	                [
+	                  <div className="Images-Container">
+	                    <Link key={photo.id}
+	                            to= {`/photo/${photo.id}`}>
+	                    <div className="food-name">
+	                        <p><b>Name:</b> {photo.name}</p>
+	                    </div>
+	                      <div className="food-image">
+	                        <img src={`/src/uploads/${photo.id}.jpg`}/>
+	                      </div>
+	                        <div className="food-desc">
+	                          <b>Description:</b> {photo.description}
+	                        </div>
+	                          <div className="food-price">
+	                            <b>Price:</b> {photo.price}
+	                          </div>
+	                      </Link>
+	                    </div>
+	            ]);
+	          })}
+	        </div>
+	      </div>
+			</div>
+	    );
+	  }
   else {
     content = <div> Stuff </div>
   }
@@ -83,7 +85,5 @@ function mapStateToProps(state, props) {
 	};
 
 }
-
-
 
 export default connect(mapStateToProps, { getAll })(UserAdmin);

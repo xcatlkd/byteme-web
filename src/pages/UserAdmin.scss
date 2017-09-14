@@ -2,6 +2,24 @@
 // 	text-align: center;
 // }
 
+h1 {
+	color: #ffffff;
+	border: 1px solid #F2F3F4;
+
+}
+
+body {
+	background-color: #F0F8FF;
+}
+
+// .UA-Body {
+// 	background-color: #F0F8FF;
+// }
+
+.UA-Body {
+	transform: translateY(25px);
+}
+
 .Image-Gallery {
 	width: 650px;
 	margin: 0 auto;
@@ -13,7 +31,6 @@
 	width: 280px;
 	height: 450;
 	float: left;
-	border: 1px solid #F2F3F4;
 }
 
 .food-name, .food-desc, .food-price {

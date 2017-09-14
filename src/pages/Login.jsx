@@ -30,13 +30,14 @@ class Login extends Component {
 	// componentDidMount() {
 	// 	console.log("cwrp  :: this.props.currentRestaurant: ",this.props.currentRestaurant);
 	// 	if (this.props.currentRestaurant) {
-	// 		history.push('/UserAdmin');			
+	// 		history.push('/UserAdmin');
 	// 	}
 	// }
 
 	render() {
 		return (
-			// <Route render={({history}) => ( 
+			// <Route render={({history}) => (
+			<div className="login-body">
 				<div className="rest-form">
 					<div className="rest-login-form">
 						<h1>Login</h1>
@@ -56,6 +57,7 @@ class Login extends Component {
 						</Segment>
 					</div>
 				</div>
+			</div>
 			// )} />
 		);
 	}
