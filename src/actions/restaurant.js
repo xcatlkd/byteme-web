@@ -81,10 +81,9 @@ export function postUpload(post) {
 			},
 		}).then((res) => {
 			console.log("action  postUpload;  res: ", res);
-			if (res.data) {
+			if (res) {
 				dispatch({
 					type: "UPLOAD_SUCCESS",
-					data: res.data,
 				})
 				dispatch(push("/useradmin"));
 			}

@@ -33,6 +33,7 @@ router.use(BodyParser.json());
 // define routes here ###################################
 
 router.post("/signup", (req, res) => {
+
 	Restaurant.signup(req)
 	.then((restaurant) => {
 		res.json(restaurant.dataValues);
@@ -45,7 +46,6 @@ router.post("/login", (req, res) => {
 	}})
 	.then((restaurant) => {
 		if (restaurant) {
-			console.log("API/login: restaurant: ", restaurant);
 			restaurant.comparePassword(req.body.password)
 			.then((valid) => {
 				if (valid) {
@@ -99,7 +99,6 @@ router.get("/posts", (req, res) => {
 });
 
 router.post("/upload", upload.single("file"), (req, res) => {
-	console.log("api upload/  req.body: ", req.body);
 	if (!req.file) {
 		res.json({error: "Invalid file type."});
 	}
@@ -111,9 +110,10 @@ router.post("/upload", upload.single("file"), (req, res) => {
 			restaurant.upload(req.file, req.body)
 		.then((image) => {
 			if (image) {
-				res.json({data: "Success"});
+				res.redirect("/useradmin");
 			}
 			else {
+				res.send({error: "Upload failed."});
 			}
 		}).catch((error) => {
 			console.error(error);
