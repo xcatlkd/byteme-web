@@ -1,19 +1,22 @@
-.rest-form {
+h1 {
+	text-align: center;
+}
 
+.signup-body {
+	margin: 0 auto;
+	background-image: url('https://i.imgur.com/n9iGItN.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
 }
 
 .rest-signup-form {
 
+	// padding: 18px 0 18px 0;
+	width: 425px;
 }
 
-.rest-user-name {
-
-}
-
-.rest-name {
-
-}
-
-.rest-password {
-	
+.submit-button {
+	padding-top: 13px;
 }

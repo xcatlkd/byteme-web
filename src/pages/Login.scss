@@ -1,0 +1,26 @@
+.login-body {
+	background-image: url('https://i.imgur.com/n9iGItN.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+}
+
+h1 {
+	color: #F4F6F6;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.rest-form {
+	margin: 0 auto;
+	width: 425px;
+	transform: translateY(60px);
+}
+
+.password {
+	padding-top: 5px;
+}
+
+.login-button {
+	padding-top: 10px;
+}

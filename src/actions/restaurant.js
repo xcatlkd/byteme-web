@@ -1,6 +1,5 @@
 import API from "util/api";
-
-
+import { push } from "react-router-redux";
 
 export function signup(restaurant) {
 	return (dispatch) => {
@@ -14,10 +13,10 @@ export function signup(restaurant) {
 				restaurantName: restaurant.restaurantName,
 			},
 		}).then((res) => {
-			if (res.data) {
-				console.log(res.data);
+			if (res) {
 				dispatch({
-					type: "SIGNUP_SUCCESS",
+					type: "AUTH_SUCCESS",
+					currentRestaurant: restaurant.username,
 				})
 			}
 			else {
@@ -29,27 +28,108 @@ export function signup(restaurant) {
 	}
 }
 
-export function login() {
+export function login(data) {
 	return (dispatch) => {
-
+		dispatch({
+			type: "AUTH_PENDING",
+		})
+		API.post("/login", {
+			args: {
+				username: data.username,
+				password: data.password,
+			},
+		}).then((res) => {
+			if (res) {
+				dispatch({
+					type: "AUTH_SUCCESS",
+					currentRestaurant: res,
+				})
+				dispatch(push("/useradmin"));
+			}
+			else {
+				console.log(res);
+			}
+		}).catch((error) => {
+			console.error("Something went wrong: ", error);
+		});
 	}
 }
 
 export function logout() {
 	return (dispatch) => {
+		dispatch({
+			type: "LOGOUT",
+		})
+		API.get("/logout");
+	}
+}
+
+export function postUpload(post) {
+	return (dispatch) => {
+		dispatch({
+			type: "UPLOAD_PENDING",
+		})
+		API.post("/upload", {
+			args: {
+				file: post.file,
+				username: post.restaurant,
+				title: post.title,
+				description: post.description,
+				price: post.price,
+			},
+		}).then((res) => {
+			if (res.data) {
+				dispatch({
+					type: "UPLOAD_SUCCESS",
+					data: res.data,
+				})
+			}
+			else {
+				dispatch({
+					type: "UPLOAD_FAILURE",
+					error: res.error,
+				})
+			}
+		}).catch((error) => {
+			dispatch({
+				type: "UPLOAD_FAILURE",
+				error: "Something went wrong",
+			})
+		})
 
 	}
 }
 
-export function postUpload() {
+export function getAll(restaurant) {
+	console.log("action/restaurants  getAll, restaurant: ", restaurant);
 	return (dispatch) => {
-
-	}
-}
-
-export function getAll() {
-	return (dispatch) => {
-		
-
+		dispatch({ 
+			type: "LOADING",
+		})
+		console.log("restaurant.id", restaurant.id);
+		API.get("/posts", {
+			args: {
+				restaurantId: restaurant.id,
+			}
+		}).then((res) => {
+			console.log("actions/restaurant; getAll, res: ", res);
+			if (res) {
+				dispatch({
+					type: "LOAD_SUCCESS",
+					posts: res,
+				})
+			}
+			else {
+				dispatch({
+					type: "LOAD_FAILURE",
+					error: res.error,
+				})
+			}
+		}).catch((error) => {
+			dispatch({
+				type: "LOAD_FAILURE",
+				error: res.error,
+			})
+		});
 	}
 }

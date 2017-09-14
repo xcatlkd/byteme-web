@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 import connectSessionSerialize from "connect-session-sequelize";
 
 import sql from "./util/sql";
-//import deserializeUser from "./middleware/deserializeUser";
+import deserializeUser from "./middleware/deserializeUser";
 const SessionStore = connectSessionSerialize(session.Store);
 
 
@@ -15,7 +15,7 @@ const SessionStore = connectSessionSerialize(session.Store);
 
 dotenv.config();
 const app = express();
-const port = process.env.SERVER_PORT || 8080;
+const port = process.env.PORT || 8080;
 const cookieSecret = process.env.COOKIE_SECRET || "don";
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,15 +26,21 @@ app.use(session({
 	secret: cookieSecret,
 	resave: false
 }));
-// app.use(deserializeUser);
+app.use(express.static('assets'));
+app.use(deserializeUser);
 
 // routing #################################
 
 import apiRoutes from "./routes/api";
+import reactRoute from "./routes/react";
 //import adminRoutes from "./routes/admin";
 
 app.use("/api", apiRoutes);
 //app.use("/admin", adminRoutes);
+
+if (!process.env.SERVER_ONLY) {
+	reactRoute(app);
+}
 
 // Sync db and launch server ################################
 

@@ -1,41 +1,96 @@
 import "./Navigation.scss";
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Button, Menu } from "semantic-ui-react";
+import PropTypes from "prop-types";
+import { logout } from "actions/restaurant";
 
 class Navigation extends Component {
-	render() {
-		const links = [{
-			to: "/signup",
-			text: "Sign Up",
-		}, {
-			to: "/login",
-			text: "Login",
-		}];
+	constructor(props) {
+		super(props);
+		this.state = {
+			isLoggedIn: this.props.isLoggedIn,
+		};
+	}
+	_handleLogout = (event) => {
+		if (event.target.parentNode.className === "logout") {
+			this.props.logout();
+		}
+	}
 
-		return (
-			<nav className="Nav">
-				<Link to="/" className="Link-Home">
-					<div className="logo">
-						<img src="/src/assets/images/restauranticon.png" />
-					Byte Me
-					</div>
-				</Link>
-				{links.map((link) => {
-					return (
-						<NavLink
-							key={link.to}
-							to={link.to}
-							className="Nav-link"
-							activeClassName="is-active"
-							exact
-						>
-							{link.text}
-						</NavLink>
-					);
-				})}
-			</nav>
+	render() {
+		console.log(this.props);
+		let links;
+		if (this.props.isLoggedIn) {
+			links = [{
+				to: "/userAdmin",
+				text: "Your Menu",
+			}, {
+				to: "/upload",
+				text: "Upload items",
+			}, {
+				to: "/",
+				text: "Logout",
+				customClass: "logout",
+			}];
+
+		}
+		else {
+			links = [{
+				to: "/signup",
+				text: "Sign Up",
+			}, {
+				to: "/login",
+				text: "Login",
+			}];
+		}
+
+  	return (
+			<div className="Nav">
+				<Menu>
+					<Menu.Menu position = "left">
+						<Link to="/" className="Link-Home">
+							<img src="https://i.imgur.com/NL5irJA.png" className="icon"/>
+								<div className="logo">
+									Byte Me
+							</div>
+						</Link>
+					</Menu.Menu>
+					<Menu.Menu position = "right">
+						<div className="nav-buttons">
+							{links.map((link) => {
+								return (
+									<NavLink
+										key={link.text}
+										to={link.to}
+										className={link.customClass || "nav-link"}
+										// activeClass="is-active"
+										exact
+										onClick={this._handleLogout}
+									> <Button color="green">{link.text}</Button>
+									</NavLink>
+								);
+							})}
+						</div>
+					</Menu.Menu>
+				</Menu>
+			</div>
 		);
 	}
 }
 
-export default Navigation;
+Navigation.propTypes = {
+
+};
+
+function mapStateToProps(state, props) {
+	return {
+		isLoggedIn: state.restaurant.isLoggedIn,
+	};
+
+}
+
+
+
+export default connect(mapStateToProps, { logout })(Navigation);

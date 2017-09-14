@@ -1,5 +1,5 @@
 export default {
-	BASE_PATH: "http://localhost:4000/api",
+	BASE_PATH: "/api",
 
 	/**
 	 * Fires a request at the API

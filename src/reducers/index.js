@@ -1,8 +1,6 @@
 import { combineReducers } from "redux";
-import Restaurant from "./restaurant";
+import restaurant from "./restaurant";
+import { routerReducer } from 'react-router-redux'
 
-export default combineReducers({ Restaurant });
-<<<<<<< HEAD
-=======
 
->>>>>>> a0dda37586dd70668ff856abdb38941f0f508561
+export default combineReducers({ restaurant, routing: routerReducer });

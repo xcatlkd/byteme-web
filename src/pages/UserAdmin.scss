@@ -1,0 +1,49 @@
+// h3, h4, h5 {
+// 	text-align: center;
+// }
+
+h1 {
+	color: #ffffff;
+	border: 1px solid #F2F3F4;
+
+}
+
+body {
+	background-color: #F0F8FF;
+}
+
+// .UA-Body {
+// 	background-color: #F0F8FF;
+// }
+
+.UA-Body {
+	transform: translateY(25px);
+}
+
+.Image-Gallery {
+	width: 650px;
+	margin: 0 auto;
+}
+
+
+.Images-Container {
+	margin: 0 auto;
+	width: 280px;
+	height: 450;
+	float: left;
+}
+
+.food-name, .food-desc, .food-price {
+	text-align: center;
+}
+
+.food-image {
+	margin: 0 auto;
+	float: none;
+	height: auto;
+	padding-left: 55px;
+}
+
+// .food-image {
+// 	margin: 0 auto;
+// }

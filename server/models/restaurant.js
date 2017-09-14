@@ -1,9 +1,9 @@
 import sql from '../util/sql';
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
+import Jimp from 'jimp';
 
 const path = require('path');
-import imgurUpload from "../util/imgurUpload";
 
 // import table dependencies
 
@@ -12,8 +12,6 @@ import Address from "./address";
 import Like from "./like";
 
 const fs = require("fs-extra");
-
-
 
 const Restaurant = sql.define('restaurant', {
 	id: {
@@ -46,20 +44,22 @@ const Restaurant = sql.define('restaurant', {
 });
 
 // relationships
-//Restaurant.hasMany(Post);
+Restaurant.hasMany(Post);
 /* Restaurant.hasOne(Address, { through: userAddress });
 Restaurant.hasMany(Phone, { through: userPhone }); */
 
 // model extensions
 Restaurant.prototype.upload = function(file, body) {
 	let image;
-	return this.createFile({
+	console.log("restaurant model; upload, file: ", file, "body: ", body)
+	return this.createPost({
 			id: file.filename,
 			size: file.size,
 			originalName: file.originalname,
 			mimeType: file.mimetype,
+			title: body.title,
 			description: body.description,
-		  
+			price: body.price,		  
 		})
 		.then(function(data) {
 			image = data;
@@ -73,7 +73,7 @@ Restaurant.prototype.upload = function(file, body) {
 				return Jimp.read(file.path)
 			.then(function(img) {
 					img.quality(80);
-					img.resize(Jimp.AUTO, 300);
+					img.resize(Jimp.AUTO, 400);
 					// img.create(file.filename);
 					return	img.write("assets/files/" + file.filename + ".jpg")
 			});
@@ -83,6 +83,7 @@ Restaurant.prototype.upload = function(file, body) {
 					return image;
 		});
 };
+
 
 
 //additional user functionality
@@ -100,6 +101,7 @@ function hashUserPassword(restaurant) {
 };
 
 Restaurant.prototype.comparePassword = function(password) {
+	console.log("model; compare password");
 	return bcrypt.compare(password, this.get("password"));
 };
 
