@@ -27,14 +27,6 @@ class Signup extends Component {
 	}
 
 	render() {
-		// const { username, restaurantName  } = this.state;
-		// const { error } = this.props;
-		//
-		// let message;
-		//
-		// if (sign) {
-		// 	message = <div className="SignUpFail">{ error }</div>
-		// }
 		return (
 			<div className="signup-body">
 				<div className="rest-form">
@@ -59,12 +51,7 @@ class Signup extends Component {
 											<Button type="submit" onSubmit={this._handleSubmit}>
 												SUBMIT</Button>
 											</div>
-											<div className="sign-up-error">
-												{ message }
-											</div>
 										</Form.Field>
-									{/* </Form.Field> */}
-								{/* </Form> */}
 							</Form>
 						</Segment>
 					</div>
