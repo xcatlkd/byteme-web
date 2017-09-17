@@ -27,14 +27,14 @@ class Signup extends Component {
 	}
 
 	render() {
-		// const { username, restaurantName  } = this.state;
-		// const { error } = this.props;
-		//
-		// let message;
-		//
-		// if (sign) {
-		// 	message = <div className="SignUpFail">{ error }</div>
-		// }
+		const { currentRestaurant, currentId  } = this.props;
+		const { error } = this.props;
+		
+		let message;
+		console.log("Signup error: ", error);
+		if (error) {
+			message = error;
+		}
 		return (
 			<div className="signup-body">
 				<div className="rest-form">
@@ -80,7 +80,9 @@ Signup.propTypes = {
 
 function mapStateToProps(state, props) {
 	return {
-
+		currentRestaurant: state.restaurant.currentRestaurant,
+		currentId: state.restaurant.currentId,
+		error: state.restaurant.error,
 	};
 
 }
