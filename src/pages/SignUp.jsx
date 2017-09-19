@@ -31,6 +31,11 @@ class Signup extends Component {
 			this.props.reset();
 		}
 	}
+	componentDidMount() {
+		if (this.props.error) {
+			this.props.reset();
+		}
+	}
 
 	render() {
 		const { currentRestaurant, currentId  } = this.props;

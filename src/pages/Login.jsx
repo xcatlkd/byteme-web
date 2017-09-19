@@ -31,6 +31,11 @@ class Login extends Component {
 			this.props.reset();
 		}
 	}
+	componentDidMount() {
+		if (this.props.error) {
+			this.props.reset();
+		}
+	}
 
 
 	render() {
