@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Button, Form, Segment, Grid } from "semantic-ui-react";
-import { signup } from "actions/restaurant";
+import { signup, reset } from "actions/restaurant";
 
 class Signup extends Component {
 	constructor(props) {
@@ -20,10 +20,16 @@ class Signup extends Component {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
 		});
+		if (this.props.error) {
+			this.props.reset();
+		}
 	}
 	_handleSubmit = () => {
 		event.preventDefault();
 		this.props.signup(this.state);
+		if (this.props.error) {
+			this.props.reset();
+		}
 	}
 
 	render() {
@@ -31,7 +37,6 @@ class Signup extends Component {
 		const { error } = this.props;
 		
 		let message;
-		console.log("Signup error: ", error);
 		if (error) {
 			message = error;
 		}
@@ -89,4 +94,4 @@ function mapStateToProps(state, props) {
 
 
 
-export default connect(mapStateToProps, { signup })(Signup);
+export default connect(mapStateToProps, { signup, reset })(Signup);
