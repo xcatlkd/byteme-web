@@ -52,14 +52,14 @@ class Signup extends Component {
 										{/* <Form.Field inline> */}
 											<p>
 											<label className="name" name="username">User Name:</label>
-											<input type="text" placeholder="Username" onChange={this._handleChange} name="username"/>
+											<input type="text" placeholder="Username" onChange={this._handleChange} name="username" required/>
 											</p>
 											<p>
 											<label className="name" name="restaurantName">Restaurant Name:</label>
-											<input type="text" placeholder="Restaurant Name" onChange={this._handleChange} name="restaurantName"/>
+											<input type="text" placeholder="Restaurant Name" onChange={this._handleChange} name="restaurantName" required/>
 											</p>
 											<label className="password" name="password">Password:</label>
-											<input type="password" placeholder="Password" onChange={this._handleChange} name="password"/>
+											<input type="password" placeholder="Password" onChange={this._handleChange} name="password" required/>
 										<div className="submit-button">
 											<Button type="submit" onSubmit={this._handleSubmit}>
 												SUBMIT</Button>

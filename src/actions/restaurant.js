@@ -21,7 +21,6 @@ export function signup(restaurant) {
 				dispatch(push("/useradmin"));
 			}
 			else if (res) {
-				console.log("signup fail, res.error: ", res.error);
 				dispatch({
 					type: "AUTH_FAILURE",
 					error: res.error,
