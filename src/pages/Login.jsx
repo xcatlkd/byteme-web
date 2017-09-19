@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Segment, Form, Button } from "semantic-ui-react";
-import { login } from "actions/restaurant";
+import { login, reset } from "actions/restaurant";
 
 class Login extends Component {
 	constructor(props) {
@@ -19,26 +19,29 @@ class Login extends Component {
 		this.setState({
 			[event.target.name]: [event.target.value].toString(),
 		});
+		if (this.props.error) {
+			this.props.reset();
+		}
 	}
 
 	_handleSubmit = (event) => {
-		console.log(this.state);
 		event.preventDefault();
 		this.props.login(this.state);
+		if (this.props.error) {
+			this.props.reset();
+		}
 	}
 
 
 	render() {
 		const { username, restaurantName  } = this.state;
 		const { error } = this.props;
-		console.log(this.props, "AAAAAAHHHHHH");
 
 		let message;
 
 		if (error) {
 			message = error;
 		}
-		console.log(error, "STUFF");
 		return (
 			// <Route render={({history}) => (
 			<div className="login-body">
@@ -84,4 +87,4 @@ function mapStateToProps(state, props) {
 
 
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, reset })(Login);

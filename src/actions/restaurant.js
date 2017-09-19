@@ -64,6 +64,14 @@ export function login(data) {
 	}
 }
 
+export function reset() {
+	return (dispatch) => {
+		dispatch({
+			type: "RESET_ERROR",
+		})		
+	}
+}
+
 export function logout() {
 	return (dispatch) => {
 		dispatch({

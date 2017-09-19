@@ -37,6 +37,11 @@ function restaurantReducer(state = INITIAL_STATE, action) {
 				isLoggedIn: false,
 				currentRestaurant: null,
 			};
+		case "RESET_ERROR":
+			return {
+				...state,
+				error: null,
+			}
 		case "SET_USER_POSTS":
 			return {
 				...state,
