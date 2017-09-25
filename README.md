@@ -1,36 +1,24 @@
 <img src="/src/assets/images/burgerlove.jpg" align="right" />
 
 # Byte Me
-A mobile food app for Users to discover food within their location by implementing the popular swipe style UI.
+
+Byte Me is a web and mobile app for users to share and swipe for food. The web app is designed for restaurants to upload photos from their establishment which utilizes the swipe style on mobile.
 
 # Getting Started
-Run `npm start`. See deployment for notes
+* npm install
+* npm start
 
 # Deployment
-TBA Heroku deployment with address
+* https://desolate-anchorage-50545.herokuapp.com/
 
 # Frameworks
 * Node and Express to handle the server
 * Postgres for database
-* React Native for build and interact with the UI
+* React Native for build and interact with the UI - the mobile repo is located, [here](https://github.com/xcatlkd/byteme-mobile)
 
 ## Project Structure / File Tree
 
-```
-.
-├── src                # Source code, including raw assets
-│   ├── App.jsx        ### The top-level component for React
-│   ├── App.scss       ### Any general, non-component styling done here
-│   ├── assets         ### Static assets
-│   │   ├── fonts      ##### Fonts(eot|otf|ttf|woff|woff2)
-│   │   └── images     ##### Images (gif|png|jpe?g|svg|ico)
-│   ├── components     ### Any shared components
-│   ├── index.ejs      ### HTML template for the app
-│   └── index.js       ### Webpack entry point / component mounting
-├── dist               # Any built files are here, not checked in
-└── webpack.config.js  # Webpack configuration for dev _and_ production
-
-```
+<img src="/src/assets/images/byteme-app-tree.png" align="center" />
 
 # Authors
 * [Jane Park](https://github.com/janepark7)
@@ -38,10 +26,10 @@ TBA Heroku deployment with address
 
 # Inspiration
 * [Tinder](http://www.tinder.com) - For swiping interface
-* [Foodspotting](http://www.foodspotting.com) - Finding food via geolocation
+* [Foodspotting](http://www.foodspotting.com) - Finding foods via geolocation
 
 # Acknowledgements
-Webpack template was created by [Will O'Beirne](https://github.com/wbobeirne/)
+Webpack template created by [Will O'Beirne](https://github.com/wbobeirne/)
 
 ## License
 
