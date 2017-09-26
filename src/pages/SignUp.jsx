@@ -69,12 +69,7 @@ class Signup extends Component {
 											<Button type="submit" onSubmit={this._handleSubmit}>
 												SUBMIT</Button>
 											</div>
-											<div className="sign-up-error">
-												{ message }
-											</div>
 										</Form.Field>
-									{/* </Form.Field> */}
-								{/* </Form> */}
 							</Form>
 						</Segment>
 					</div>
