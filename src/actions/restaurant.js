@@ -23,7 +23,7 @@ export function signup(restaurant) {
 			else if (res) {
 				dispatch({
 					type: "AUTH_FAILURE",
-					error: res,
+					error: res.error,
 				})
 			}
 		}).catch((error) => {
@@ -60,6 +60,14 @@ export function login(data) {
 		}).catch((error) => {
 			console.error("Something went wrong: ", error);
 		});
+	}
+}
+
+export function reset() {
+	return (dispatch) => {
+		dispatch({
+			type: "RESET_ERROR",
+		})		
 	}
 }
 
