@@ -41,26 +41,26 @@ class UserAdmin extends Component {
 	                [
 	                  <div className="Images-Container">
 	                    <Link key={photo.id}
-	                            to= {`/photo/${photo.id}`}>
+                        to={`/photo/${photo.id}`}>
 	                    <div className="food-name">
-	                        <p><b>Title:</b> {photo.title}</p>
+                        <p><b>Title:</b> {photo.title}</p>
 	                    </div>
-	                      <div className="food-image">
-	                        <img src={`${filePath}${photo.id}`}/>
-	                      </div>
-	                        <div className="food-desc">
-	                          <b>Description:</b> {photo.description}
-	                        </div>
-	                          <div className="food-price">
-	                            <b>Price:</b> {photo.price}
-	                          </div>
-	                      </Link>
-	                    </div>
-	            ]);
-	          })}
-	        </div>
-	      </div>
-			</div>
+                      <div className="food-image">
+	                      <img src={`${filePath}${photo.id}`} style={{width: '220px', height: '220px', 'object-fit': 'cover'}}/>
+                      </div>
+                      <div className="food-desc">
+                        <b>Description:</b> {photo.description}
+                      </div>
+                      <div className="food-price">
+                        <b>Price:</b> {photo.price}
+                      </div>
+                    </Link>
+                  </div>
+	            	]);
+		          })}
+		        </div>
+		      </div>
+				</div>
 	    );
 	  }
 
