@@ -23,7 +23,7 @@ class Navigation extends Component {
 		let links;
 		if (this.props.isLoggedIn) {
 			links = [{
-				to: "/userAdmin",
+				to: "/useradmin",
 				text: "Your Menu",
 			}, {
 				to: "/upload",
