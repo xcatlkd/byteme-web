@@ -2,7 +2,6 @@ import "./UserAdmin.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import Test from "json/test.json";
 import PropTypes from "prop-types";
 import { getAll } from "actions/restaurant";
 // const imagePath = require("/src/";)
@@ -12,6 +11,7 @@ class UserAdmin extends Component {
 		super(props);
     this.state = {
       posts: [],
+      currentImage: {},
     }
   }
 
@@ -21,6 +21,8 @@ class UserAdmin extends Component {
       posts: this.props.posts,
     })
   }
+
+  
 
 	render() {
     const { posts, isLoading } = this.props;
@@ -40,8 +42,8 @@ class UserAdmin extends Component {
 	              return (
 	                [
 	                  <div className="Images-Container">
-	                    <Link key={photo.id}
-                        to={`/photo/${photo.id}`}>
+	                    <Link key={index}
+                        to={`/photo/${index}`}>
 	                    <div className="food-name">
                         <p><b>Title:</b> {photo.title}</p>
 	                    </div>
@@ -52,7 +54,7 @@ class UserAdmin extends Component {
                         <b>Description:</b> {photo.description}
                       </div>
                       <div className="food-price">
-                        <b>Price:</b> {photo.price}
+                        <b>Price:</b> ${photo.price} 
                       </div>
                     </Link>
                   </div>

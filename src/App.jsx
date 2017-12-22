@@ -21,6 +21,7 @@ import SignUp from "pages/SignUp";
 import Login from "pages/Login";
 import UserAdmin from "pages/UserAdmin";
 import Upload from "pages/Upload";
+import Photo from "pages/Photo";
 import PageError from "pages/404";
 
 
@@ -56,10 +57,11 @@ class App extends React.Component {
             <Navigation/>
             <Switch>
               <Route exact path= "/" component={Home}/>
-              <Route exact path="/Signup" component={SignUp} onEnter={this._requireAuth}/>
-              <Route exact path="/Login" component={Login} onEnter={this._requireAuth}/>
-              <Route exact path="/UserAdmin" component={UserAdmin} onEnter={this._requireAuth}/>
-              <Route exact path="/Upload" component={Upload} />
+              <Route exact path="/signup" component={SignUp} onEnter={this._requireAuth}/>
+              <Route exact path="/login" component={Login} onEnter={this._requireAuth}/>
+              <Route exact path="/useradmin" component={UserAdmin} onEnter={this._requireAuth}/>
+              <Route exact path="/upload" component={Upload} />
+              <Route exact path="/photo/*" component={Photo} />
               <Route exact path="/*" component={PageError}/>
             </Switch>
             </div>
