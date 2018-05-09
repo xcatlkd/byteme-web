@@ -52,7 +52,7 @@ class Navigation extends Component {
 						<Link to="/" className="Link-Home">
 							<img src="https://i.imgur.com/NL5irJA.png" className="icon"/>
 								<div className="logo">
-									Byte Me
+									Seymore
 							</div>
 						</Link>
 					</Menu.Menu>

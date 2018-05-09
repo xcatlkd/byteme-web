@@ -22,7 +22,7 @@ class Home extends Component {
 		}
 		else {
 			content = (<div>
-				Welcome to Byte Me! If you're a restaurateur and/or food establishment owner,
+				Welcome to Seymore! If you're a restaurateur and/or food establishment owner,
 				 <Link to="/signup"> sign up</Link> for an account to put your business out there!
 				</div>)
 		}
@@ -32,7 +32,7 @@ class Home extends Component {
 			<Grid textAlign='center'>
 				{/* <Grid.Column> */}
 			<div className="home-container">
-				<h1 className="landing-header">Byte Me!</h1>
+				<h1 className="landing-header">Seymore</h1>
 				<div className="home-text">{content}</div>
 			</div>
 		{/* </Grid.Column> */}
