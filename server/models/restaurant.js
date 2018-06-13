@@ -48,26 +48,9 @@ Restaurant.hasMany(Post);
 /* Restaurant.hasOne(Address, { through: userAddress });
 Restaurant.hasMany(Phone, { through: userPhone }); */
 
-// model extensions
-Restaurant.prototype.upload = function(file, body) {
-	let image;
-	return this.createPost({
-			id: file.key,
-			size: file.size,
-			originalName: file.originalname,
-			mimeType: file.mimetype,
-			title: body.title,
-			description: body.description,
-			price: body.price,		  
-		})
-		.then(function(image) {
-					return image;
-		});
-};
+// Model extensions::
 
-
-
-//additional user functionality
+// Authorization and registration functionality
 
 function hashUserPassword(restaurant) {
 	if (restaurant.password) {
@@ -85,6 +68,57 @@ Restaurant.prototype.comparePassword = function(password) {
 	return bcrypt.compare(password, this.get("password"));
 };
 
+Restaurant.signup = function(req) {
+	return Restaurant.create({
+			username: req.body.username,
+			password: req.body.password,
+			restaurantName: req.body.restaurantName,
+			isActive: true,
+		})
+		.then(function(restaurant) {
+			return restaurant;
+		});
+};
+
+// Restaurant User functionality
+Restaurant.prototype.upload = function(file, body) {
+	let image;
+	return this.createPost({
+			id: file.key,
+			size: file.size,
+			originalName: file.originalname,
+			mimeType: file.mimetype,
+			title: body.title,
+			description: body.description,
+			price: body.price,		  
+		})
+		.then(function(image) {
+					return image;
+		});
+};
+
+Restaurant.prototype.destroy = function(post, body) {
+	if (Restaurant) {
+		return Restaurant.findOne({ where:
+			username === username,
+		})
+		.then(function(restaurant){
+			if (post.Id === restaurant.id) {
+
+				return this.destroyPost({
+
+				})
+				.then(function(){
+
+				})
+			}
+		})
+	}
+	else {
+		return null;
+	}
+};
+
 Restaurant.search = function(username) {
 	return Restaurant.findOne({ where: {
 		username: username,
@@ -96,18 +130,6 @@ Restaurant.search = function(username) {
 			return false;
 		}
 	})
-};
-
-Restaurant.signup = function(req) {
-	return Restaurant.create({
-			username: req.body.username,
-			password: req.body.password,
-			restaurantName: req.body.restaurantName,
-			isActive: true,
-		})
-		.then(function(restaurant) {
-			return restaurant;
-		});
 };
 
 

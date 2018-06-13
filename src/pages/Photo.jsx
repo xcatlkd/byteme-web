@@ -21,7 +21,8 @@ class Photo extends Component {
 			photo: this.props.posts[this.props.match.params[0]],
 		})
 	}
-
+// Within the render function; will need to add some conditional rendering based on authorization and matching the current user to the post owner
+// If the same, render appropriate CRUD elements.
 	render() {
 		const filePath = 'https://s3.us-east-2.amazonaws.com/bytemeimagestorage/';
 		const { photo } = this.state;
