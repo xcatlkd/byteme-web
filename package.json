@@ -41,7 +41,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^4.0.1",
     "history": "^4.7.2",
-    "hoek": "^5.0.3",
+    "hoek": "^4.2.1",
     "html-webpack-plugin": "^2.29.0",
     "image-webpack-loader": "^3.3.1",
     "jimp": "^0.2.28",
