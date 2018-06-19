@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import { getAll } from "actions/restaurant";
 // const imagePath = require("/src/";)
 
+import AdminTools from '../components/AdminTools';
+
 class UserAdmin extends Component {
 	constructor(props) {
 		super(props);
@@ -25,30 +27,33 @@ class UserAdmin extends Component {
   
 
 	render() {
-    const { posts, isLoading } = this.props;
+    const { posts, isLoading, currentRestaurant } = this.props;
     const filePath = 'https://s3.us-east-2.amazonaws.com/bytemeimagestorage/';
     let content;
+    let tools;
     if (isLoading) {
       content = <div className="loading">Loading</div>
     }
     else if (posts) {
-
+      if ( posts[0].restaurantId === currentRestaurant.id ) {
+        tools = ( <AdminTools></AdminTools> );
+      }
       content = (
 			<div className="UA-Body">
-	      <div className="UserAdmin">
-	        <h1 className="User-Header">Welcome, let's look at your Food Photos!</h1>
-	          <div className="Image-Gallery">
-	            {posts.map((photo, index) => {
-	              return (
-	                [
-	                  <div className="Images-Container">
-	                    <Link key={index}
+        <div className="UserAdmin">
+          <h1 className="User-Header">Welcome, let's look at your Food Photos!</h1>
+            <div className="Image-Gallery">
+              {posts.map((photo, index) => {
+                return (
+                  [
+                    <div className="Images-Container">
+                      <Link key={index}
                         to={`/photo/${index}`}>
-	                    <div className="food-name">
+                      <div className="food-name">
                         <p><b>Title:</b> {photo.title}</p>
-	                    </div>
+                      </div>
                       <div className="food-image">
-	                      <img src={`${filePath}${photo.id}`} style={{width: '220px', height: '220px', 'object-fit': 'cover'}}/>
+                        <img src={`${filePath}${photo.id}`} style={{width: '220px', height: '220px', 'objectFit': 'cover', 'margin': '0 auto'}}/>
                       </div>
                       <div className="food-desc">
                         <b>Description:</b> {photo.description}
@@ -57,14 +62,22 @@ class UserAdmin extends Component {
                         <b>Price:</b> ${photo.price} 
                       </div>
                     </Link>
+                    <div>{tools}</div>
                   </div>
-	            	]);
-		          })}
-		        </div>
-		      </div>
-				</div>
-	    );
-	  }
+                ]);
+              })}
+            </div>
+          </div>
+          <div className="Diagnostic">
+            <div className="displayInfo">
+              <h3>{`${this.props.currentId}`}</h3>
+              <h3>{`${this.props.currentRestaurant.id}`}</h3>
+              <h3>{`${this.props.posts[1].restaurantId}`}</h3>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
   else {
     content = <div> Stuff </div>

@@ -1,6 +1,6 @@
 import './App.scss';
 import React from 'react';
-import { BrowserRouter, Switch, Route,  } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
@@ -49,6 +49,10 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -64,11 +68,11 @@ class App extends React.Component {
               <Route exact path="/photo/*" component={Photo} />
               <Route exact path="/*" component={PageError}/>
             </Switch>
-            </div>
-          </ConnectedRouter>
-        </Provider>
-      );
-    }
+          </div>
+        </ConnectedRouter>
+      </Provider>
+    );
+  }
 }
 
 export default App;
