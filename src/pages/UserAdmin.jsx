@@ -53,7 +53,7 @@ class UserAdmin extends Component {
                         <p><b>Title:</b> {photo.title}</p>
                       </div>
                       <div className="food-image">
-                        <img src={`${filePath}${photo.id}`} style={{width: '220px', height: '220px', 'objectFit': 'cover', 'margin': '0 auto'}}/>
+                        <img src={`${filePath}${photo.id}`} style={{width: '278px', height: '220px', 'objectFit': 'cover'}}/>
                       </div>
                       <div className="food-desc">
                         <b>Description:</b> {photo.description}

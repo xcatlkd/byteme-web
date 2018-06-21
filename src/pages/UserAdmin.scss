@@ -27,7 +27,7 @@ body {
 
 .Images-Container {
 	margin: 0 auto;
-	width: 30%;
+	width: 32%;
 	float: left;
 }
 
@@ -36,9 +36,11 @@ body {
 }
 
 .food-image {
-	margin: 0 auto;
+	margin-left: 50%;
+	width: 278px;
 	float: none;
 	height: auto;
+	transform: translateX(-50%);
 
 }
 
