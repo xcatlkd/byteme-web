@@ -65,7 +65,7 @@
     "sass-loader": "^6.0.6",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.72.0",
-    "sequelize": "^4.8.0",
+    "sequelize": "^5.15.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.12.0",
